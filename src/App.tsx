@@ -16,6 +16,7 @@ import Phonics from '@/pages/Phonics';
 import VocabularyFoundation from '@/pages/VocabularyFoundation';
 import GrammarFoundation from '@/pages/GrammarFoundation';
 import SkillsFoundation from '@/pages/SkillsFoundation';
+import JuniorEnglish from '@/pages/JuniorEnglish';
 import Practice from '@/pages/Practice';
 import Progress from '@/pages/Progress';
 import MyPath from '@/pages/MyPath';
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/learn/vocabulary-foundation" element={<VocabularyFoundation />} />
         <Route path="/learn/grammar-foundation" element={<GrammarFoundation />} />
         <Route path="/learn/skills-foundation" element={<SkillsFoundation />} />
+        <Route path="/junior-english" element={<JuniorEnglish />} />
         <Route path="/learn/practice" element={<Practice />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/path" element={<MyPath />} />
