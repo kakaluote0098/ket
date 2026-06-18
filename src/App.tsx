@@ -8,6 +8,7 @@ import Speaking from '@/pages/Speaking';
 import Listening from '@/pages/Listening';
 import Progress from '@/pages/Progress';
 import MyPath from '@/pages/MyPath';
+import UnitDetail from '@/pages/UnitDetail';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<Courses />} />
+        <Route path="/courses/:unitId" element={<UnitDetail />} />
         <Route path="/learn" element={<Learn />} />
         <Route path="/learn/vocabulary" element={<Vocabulary />} />
         <Route path="/learn/grammar" element={<Grammar />} />

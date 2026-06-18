@@ -17,6 +17,15 @@ export interface GrammarQuestion {
   level: Level;
 }
 
+export interface GrammarLesson {
+  id: string;
+  title: string;
+  content: string;
+  examples: string[];
+  tip?: string;
+  level: Level;
+}
+
 export interface ListeningQuestion {
   id: string;
   audioText: string;
@@ -32,6 +41,7 @@ export interface CourseUnit {
   order: number;
   wordIds: string[];
   grammarIds: string[];
+  grammarLessonIds: string[];
   listeningIds: string[];
 }
 

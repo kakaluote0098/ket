@@ -73,6 +73,15 @@ interface GrammarQuestion {
   level: Level;
 }
 
+interface GrammarLesson {
+  id: string;
+  title: string;
+  content: string;
+  examples: string[];
+  tip?: string;
+  level: Level;
+}
+
 interface UserProgress {
   streakDays: number;
   lastStudyDate: string;
@@ -108,6 +117,14 @@ erDiagram
         string explanation
         string level
     }
+    GRAMMAR_LESSON {
+        string id
+        string title
+        string content
+        list examples
+        string tip
+        string level
+    }
     LISTENING_QUESTION {
         string id
         string audioText
@@ -122,6 +139,7 @@ erDiagram
         int order
         list wordIds
         list grammarIds
+        list grammarLessonIds
     }
     USER_PROGRESS {
         int streakDays
@@ -141,6 +159,7 @@ erDiagram
 
 - 每个级别预置 6-8 个课程单元。
 - 每个单元包含 8-12 个单词、5-8 道语法题、3-5 道听力题。
+- 每个单元配置 1-3 个基础语法讲解点（GrammarLesson）。
 - 口语跟读使用单元内例句作为练习素材。
 - 用户进度初始化为默认值，首次进入时自动创建。
 

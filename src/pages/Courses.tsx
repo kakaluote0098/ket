@@ -52,7 +52,7 @@ export default function Courses() {
           return (
             <Link
               key={unit.id}
-              to={locked ? '#' : `/learn?unit=${unit.id}`}
+              to={locked ? '#' : `/courses/${unit.id}`}
               onClick={(e) => locked && e.preventDefault()}
               className="block"
             >
