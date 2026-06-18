@@ -1,11 +1,12 @@
 export type Level = 'starter' | 'mover' | 'flyer' | 'ket';
 
-export type Phase = 'phase1' | 'phase2' | 'phase3';
+export type Phase = 'phase1' | 'phase2' | 'phase3' | 'phase4';
 
 export const phaseLabels: Record<Phase, { label: string; description: string; levels: Level[] }> = {
   phase1: { label: '第一阶段', description: '基础启蒙', levels: ['starter'] },
   phase2: { label: '第二阶段', description: '体系搭建', levels: ['mover', 'flyer'] },
   phase3: { label: '第三阶段', description: 'KET 系统强化', levels: ['ket'] },
+  phase4: { label: '第四阶段', description: '全考点复盘', levels: ['starter', 'mover', 'flyer', 'ket'] },
 };
 
 export const getLevelsByPhase = (phase: Phase): Level[] => phaseLabels[phase].levels;

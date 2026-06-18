@@ -5,6 +5,7 @@ const phaseColors: Record<Phase, string> = {
   phase1: 'bg-mint',
   phase2: 'bg-ocean',
   phase3: 'bg-coral',
+  phase4: 'bg-star',
 };
 
 export default function PhaseSelector() {

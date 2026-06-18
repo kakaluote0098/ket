@@ -8,6 +8,7 @@ import Speaking from '@/pages/Speaking';
 import Listening from '@/pages/Listening';
 import ExamGuide from '@/pages/ExamGuide';
 import ExamTips from '@/pages/ExamTips';
+import Review from '@/pages/Review';
 import Practice from '@/pages/Practice';
 import Progress from '@/pages/Progress';
 import MyPath from '@/pages/MyPath';
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/learn/listening" element={<Listening />} />
         <Route path="/learn/exam" element={<ExamGuide />} />
         <Route path="/learn/exam-tips" element={<ExamTips />} />
+        <Route path="/learn/review" element={<Review />} />
         <Route path="/learn/practice" element={<Practice />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/path" element={<MyPath />} />

@@ -51,6 +51,13 @@ const modules = [
     to: '/learn/exam-tips',
     color: 'bg-gradient-to-br from-coral/30 to-coral/10',
   },
+  {
+    icon: '🔄',
+    title: '全考点复盘',
+    desc: '第四阶段系统复盘，查漏补缺',
+    to: '/learn/review',
+    color: 'bg-gradient-to-br from-star/40 to-star/10',
+  },
 ];
 
 export default function Learn() {
