@@ -69,6 +69,20 @@ KET 探索星球是一款面向小学阶段的沉浸式在线英语学习平台�
 - **时间状语**：every day, usually, often, sometimes, always 等常用时间状语
 - **介词**：in / on / at / under / next to / between 等基础方位与时间介词
 
+#### 2.4.3 KET 核心与场景词汇（第二阶段）
+
+在完成生活化基础词汇后，系统切入 KET 考纲高频与场景词汇，新增 350 个核心词，总词汇量达到 750-800 个，覆盖 KET 考纲约 60% 的基础词汇。新增类别包括：
+
+| 类别 | 示例主题 | 目标数量 |
+|------|----------|----------|
+| 出行 | airport, ticket, passport, station | 70-80 |
+| 学习 | subject, exam, dictionary, project | 70-80 |
+| 兴趣 | hobby, painting, guitar, collect | 70-80 |
+| 运动 | basketball, swimming, racket, exercise | 70-80 |
+| 节日 | festival, present, celebrate, holiday | 50-60 |
+
+每个 KET 核心词汇除释义外，还补充固定搭配（collocation）、基础短语（phrase）、近义词（synonyms）与简单词性（partOfSpeech）信息，帮助学生理解词义和用法差异。
+
 ## 3. 核心流程
 
 学生进入首页后查看今日任务，点击任务进入对应学习模块；完成练习后系统记录得分并更新能力数据。学生也可在课程中心按级别选择单元学习，或在“我的路径”中查看基于历史表现的个性化推荐。所有进度保存在浏览器本地存储，刷新页面后自动恢复。

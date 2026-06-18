@@ -56,7 +56,9 @@ flowchart TB
 核心数据类型示例：
 
 ```typescript
-type WordCategory = 'school' | 'family' | 'food' | 'animals' | 'colors' | 'numbers' | 'clothes' | 'weather';
+type WordCategory =
+  | 'school' | 'family' | 'food' | 'animals' | 'colors' | 'numbers' | 'clothes' | 'weather'
+  | 'travel' | 'study' | 'hobby' | 'sports' | 'festival';
 
 interface Word {
   id: string;
@@ -65,6 +67,10 @@ interface Word {
   example: string;
   category: WordCategory;
   level: 'starter' | 'mover' | 'flyer' | 'ket';
+  partOfSpeech?: string;
+  collocation?: string;
+  phrase?: string;
+  synonyms?: string[];
 }
 
 interface GrammarQuestion {
@@ -112,6 +118,10 @@ erDiagram
         string example
         string category
         string level
+        string partOfSpeech
+        string collocation
+        string phrase
+        list synonyms
     }
     GRAMMAR_QUESTION {
         string id
@@ -162,7 +172,8 @@ erDiagram
 ### 5.2 初始数据
 
 - 每个级别预置 6-8 个课程单元。
-- 词汇库包含 400-450 个高频基础词，覆盖校园、家庭、食物、动物、颜色、数字、服饰、天气八大类别。
+- 词汇库总计 750-800 个词，包含生活化基础词（400-450 个）与 KET 核心场景词（350 个），覆盖校园、家庭、食物、动物、颜色、数字、服饰、天气、出行、学习、兴趣、运动、节日十三大类别。
+- KET 核心词汇补充固定搭配、基础短语、近义词与词性信息。
 - 每个单元包含 8-12 个单词、5-8 道语法题、3-5 道听力题。
 - 每个单元配置 1-3 个基础语法讲解点（GrammarLesson），涵盖人称代词、物主代词、名词单复数、可数/不可数名词、be 动词、SVO 句型、一般现在时、时间状语、基础介词等。
 - 口语跟读使用单元内例句作为练习素材。

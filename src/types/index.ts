@@ -8,7 +8,12 @@ export type WordCategory =
   | 'colors'
   | 'numbers'
   | 'clothes'
-  | 'weather';
+  | 'weather'
+  | 'travel'
+  | 'study'
+  | 'hobby'
+  | 'sports'
+  | 'festival';
 
 export interface Word {
   id: string;
@@ -17,6 +22,10 @@ export interface Word {
   example: string;
   category: WordCategory;
   level: Level;
+  partOfSpeech?: string;
+  collocation?: string;
+  phrase?: string;
+  synonyms?: string[];
 }
 
 export interface GrammarQuestion {
