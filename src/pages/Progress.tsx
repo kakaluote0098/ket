@@ -1,7 +1,10 @@
+import { Link } from 'react-router-dom';
+import { ArrowRight, BookOpen, RotateCcw, Target } from 'lucide-react';
 import Layout from '@/components/Layout';
 import RadarChart from '@/components/RadarChart';
 import BadgeGrid from '@/components/BadgeGrid';
 import { useProgressStore } from '@/stores/progressStore';
+import { words } from '@/data/words';
 import type { Badge } from '@/types';
 
 const badges: Badge[] = [
@@ -52,6 +55,17 @@ export default function Progress() {
     writingScore: '写作',
   };
 
+  const weakWordDetails = progress.weakWords.map((id) => words.find((w) => w.id === id)).filter(Boolean);
+  const weakestSkill = progress.getWeakestSkill();
+  const weakestSkillLabel = skillLabels[weakestSkill];
+  const skillRouteMap: Record<string, string> = {
+    grammarScore: '/learn/grammar',
+    listeningScore: '/learn/listening',
+    speakingScore: '/learn/speaking',
+    readingScore: '/learn/practice',
+    writingScore: '/learn/practice',
+  };
+
   return (
     <Layout>
       <div className="mb-6">
@@ -86,6 +100,63 @@ export default function Progress() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 错题本与薄弱点 */}
+      <div className="card mb-8">
+        <div className="mb-4 flex items-center gap-2">
+          <BookOpen size={20} className="text-coral" />
+          <h2 className="text-xl font-bold text-space-900">专属错题本</h2>
+        </div>
+
+        {weakWordDetails.length > 0 ? (
+          <div className="mb-6">
+            <p className="mb-3 text-sm font-semibold text-space-900/70">
+              薄弱词汇 <span className="text-space-900/50">({weakWordDetails.length})</span>
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {weakWordDetails.slice(0, 12).map((word) => (
+                <span
+                  key={word!.id}
+                  className="rounded-full bg-coral/10 px-3 py-1 text-sm font-semibold text-coral"
+                >
+                  {word!.english} <span className="text-coral/70">{word!.chinese}</span>
+                </span>
+              ))}
+              {weakWordDetails.length > 12 && (
+                <span className="rounded-full bg-space-900/5 px-3 py-1 text-sm text-space-900/60">
+                  +{weakWordDetails.length - 12} 更多
+                </span>
+              )}
+            </div>
+            <Link
+              to="/learn/vocabulary"
+              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-nebula hover:underline"
+            >
+              去单词记忆加强 <ArrowRight size={14} />
+            </Link>
+          </div>
+        ) : (
+          <p className="mb-6 text-sm text-space-900/60">还没有标记的薄弱词汇，继续练习会在这里生成专属错题本。</p>
+        )}
+
+        <div className="rounded-2xl bg-star/5 p-4">
+          <div className="mb-3 flex items-center gap-2">
+            <Target size={18} className="text-star" />
+            <p className="text-sm font-semibold text-space-900/80">当前最需加强：{weakestSkillLabel}</p>
+          </div>
+          <p className="mb-4 text-sm leading-relaxed text-space-900/70">
+            根据你的能力雷达，{weakestSkillLabel} 是目前相对薄弱的能力。建议优先进行专项练习，针对性攻克失分点。
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link to={skillRouteMap[weakestSkill]} className="btn-primary text-sm">
+              专项练习 <ArrowRight size={16} />
+            </Link>
+            <Link to="/learn/exam-tips" className="btn-outline text-sm">
+              <RotateCcw size={16} /> 应试技巧
+            </Link>
           </div>
         </div>
       </div>

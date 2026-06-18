@@ -44,6 +44,13 @@ const modules = [
     to: '/learn/practice',
     color: 'bg-gradient-to-br from-star/40 to-star/10',
   },
+  {
+    icon: '💡',
+    title: '应试技巧',
+    desc: '审题排除、时间分配、错题本与高分规范',
+    to: '/learn/exam-tips',
+    color: 'bg-gradient-to-br from-coral/30 to-coral/10',
+  },
 ];
 
 export default function Learn() {
