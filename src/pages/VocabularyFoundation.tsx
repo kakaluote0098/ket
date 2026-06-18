@@ -11,6 +11,8 @@ import {
   Volume2,
 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import { speak } from '@/lib/speech';
+import SpeakButton from '@/components/SpeakButton';
 import {
   phase1VocabCategories,
   vocabMemoryMethods,
@@ -23,13 +25,6 @@ export default function VocabularyFoundation() {
 
   const toggleCategory = (id: string) => {
     setExpandedCategory((prev) => (prev === id ? null : id));
-  };
-
-  const speakWord = (text: string) => {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
   };
 
   return (
@@ -119,7 +114,7 @@ export default function VocabularyFoundation() {
                       <div className="mb-2 flex items-center justify-between">
                         <span className="text-lg font-bold text-space-900">{word.english}</span>
                         <button
-                          onClick={() => speakWord(word.english)}
+                          onClick={() => speak(word.english)}
                           className="rounded-full bg-nebula/10 p-1.5 text-nebula transition-colors hover:bg-nebula/20"
                         >
                           <Volume2 size={16} />
@@ -127,7 +122,10 @@ export default function VocabularyFoundation() {
                       </div>
                       <p className="mb-1 text-sm text-nebula">{word.phonetic}</p>
                       <p className="mb-2 text-sm font-medium text-space-900/80">{word.chinese}</p>
-                      <p className="text-xs text-space-900/60">{word.example}</p>
+                      <p className="flex items-start gap-1 text-xs text-space-900/60">
+                        {word.example}
+                        <SpeakButton text={word.example} size={14} />
+                      </p>
                     </div>
                   ))}
                 </div>

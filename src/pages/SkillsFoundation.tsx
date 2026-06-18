@@ -14,6 +14,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import SpeakButton from '@/components/SpeakButton';
 import { phase1SkillsLessons } from '@/data/phase1Skills';
 
 export default function SkillsFoundation() {
@@ -106,7 +107,10 @@ export default function SkillsFoundation() {
                     <div className="space-y-2">
                       {lesson.listening.items.map((item, i) => (
                         <div key={i} className="rounded-xl bg-white/60 p-3">
-                          <p className="font-semibold text-space-900">{item.english}</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold text-space-900">{item.english}</p>
+                            <SpeakButton text={item.english} size={16} />
+                          </div>
                           <p className="text-sm text-space-900/70">{item.chinese}</p>
                           {item.response && (
                             <p className="mt-1 text-xs text-ocean/80">反应：{item.response}</p>
@@ -124,7 +128,10 @@ export default function SkillsFoundation() {
                       {lesson.speaking.items.map((item, i) => (
                         <div key={i} className="rounded-xl bg-white/60 p-3">
                           <p className="text-xs font-semibold text-nebula/80">{item.situation}</p>
-                          <p className="whitespace-pre-line font-semibold text-space-900">{item.example}</p>
+                          <div className="flex items-start gap-2">
+                            <p className="whitespace-pre-line font-semibold text-space-900">{item.example}</p>
+                            <SpeakButton text={item.example} size={16} />
+                          </div>
                           <p className="whitespace-pre-line text-sm text-space-900/70">{item.chinese}</p>
                         </div>
                       ))}
@@ -139,7 +146,10 @@ export default function SkillsFoundation() {
                       {lesson.writing.items.map((item, i) => (
                         <div key={i} className="rounded-xl bg-white/60 p-3">
                           <p className="text-xs font-semibold text-coral/80">{item.task}</p>
-                          <p className="whitespace-pre-line font-semibold text-space-900">{item.example}</p>
+                          <div className="flex items-start gap-2">
+                            <p className="whitespace-pre-line font-semibold text-space-900">{item.example}</p>
+                            <SpeakButton text={item.example} size={16} />
+                          </div>
                           <p className="text-sm text-space-900/70">{item.chinese}</p>
                         </div>
                       ))}
@@ -153,7 +163,10 @@ export default function SkillsFoundation() {
                     <div className="space-y-2">
                       {lesson.reading.items.map((item, i) => (
                         <div key={i} className="rounded-xl bg-white/60 p-3">
-                          <p className="font-semibold text-space-900">{item.text}</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold text-space-900">{item.text}</p>
+                            <SpeakButton text={item.text} size={16} />
+                          </div>
                           <p className="text-sm text-space-900/70">{item.chinese}</p>
                         </div>
                       ))}

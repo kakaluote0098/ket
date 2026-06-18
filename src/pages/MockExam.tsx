@@ -14,8 +14,11 @@ import {
   Trophy,
 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import SpeakButton from '@/components/SpeakButton';
 import { phase4MockExams, mockExamInstructions } from '@/data/phase4MockExams';
 import type { MockExam } from '@/data/phase4MockExams';
+
+const hasEnglish = (text: string) => /[a-zA-Z]/.test(text);
 
 type ExamState = 'list' | 'instructions' | 'running' | 'review';
 
@@ -124,7 +127,8 @@ export default function MockExam() {
               <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-space-900/10 text-xs font-bold text-space-900">
                 {idx + 1}
               </div>
-              <p className="text-sm text-space-900/80">{instruction}</p>
+              <p className="flex-1 text-sm text-space-900/80">{instruction}</p>
+              {hasEnglish(instruction) && <SpeakButton text={instruction} size={14} />}
             </div>
           ))}
         </div>
@@ -230,23 +234,28 @@ export default function MockExam() {
               <div className="space-y-5">
                 {part.questions.map((q, idx) => (
                   <div key={q.id} className="rounded-2xl bg-space-900/[0.02] p-4">
-                    <p className="mb-3 text-sm font-semibold text-space-900/80">
-                      {idx + 1}. {q.question}
+                    <p className="mb-3 flex items-start gap-2 text-sm font-semibold text-space-900/80">
+                      <span className="flex-1">
+                        {idx + 1}. {q.question}
+                      </span>
+                      {hasEnglish(q.question) && <SpeakButton text={q.question} size={14} />}
                     </p>
                     {q.type === 'choice' && q.options && (
                       <div className="grid gap-2 sm:grid-cols-2">
                         {q.options.map((option, oIdx) => (
-                          <button
-                            key={oIdx}
-                            onClick={() => handleAnswer(q.id, oIdx)}
-                            className={`rounded-xl px-4 py-2 text-left text-sm transition-all ${
-                              answers[q.id] === oIdx
-                                ? 'bg-nebula text-white shadow-sm'
-                                : 'bg-white/60 text-space-900 hover:bg-white'
-                            }`}
-                          >
-                            {String.fromCharCode(65 + oIdx)}. {option}
-                          </button>
+                          <div key={oIdx} className="flex items-center gap-2">
+                            <button
+                              onClick={() => handleAnswer(q.id, oIdx)}
+                              className={`flex-1 rounded-xl px-4 py-2 text-left text-sm transition-all ${
+                                answers[q.id] === oIdx
+                                  ? 'bg-nebula text-white shadow-sm'
+                                  : 'bg-white/60 text-space-900 hover:bg-white'
+                              }`}
+                            >
+                              {String.fromCharCode(65 + oIdx)}. {option}
+                            </button>
+                            {hasEnglish(option) && <SpeakButton text={option} size={14} />}
+                          </div>
                         ))}
                       </div>
                     )}
@@ -295,25 +304,34 @@ export default function MockExam() {
               <div className="space-y-4">
                 {part.questions.map((q, idx) => (
                   <div key={q.id} className="rounded-2xl bg-space-900/[0.02] p-4">
-                    <p className="mb-2 text-sm font-semibold text-space-900/80">
-                      {idx + 1}. {q.question}
+                    <p className="mb-2 flex items-start gap-2 text-sm font-semibold text-space-900/80">
+                      <span className="flex-1">
+                        {idx + 1}. {q.question}
+                      </span>
+                      {hasEnglish(q.question) && <SpeakButton text={q.question} size={14} />}
                     </p>
                     {q.type === 'choice' ? (
                       <div className="text-sm">
-                        <p className="mb-1">
-                          你的答案：
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <span>你的答案：</span>
                           {answers[q.id] !== undefined ? (
                             <span className={answers[q.id] === q.answer ? 'font-semibold text-mint' : 'font-semibold text-coral'}>
-                              {String.fromCharCode(65 + (answers[q.id] ?? 0))}
+                              {String.fromCharCode(65 + (answers[q.id] ?? 0))}. {q.options?.[answers[q.id] ?? 0]}
                             </span>
                           ) : (
                             <span className="text-space-900/50">未作答</span>
                           )}
-                        </p>
-                        <p className="mb-1 text-space-900/70">
-                          正确答案：
-                          <span className="font-semibold text-mint">{q.answer !== undefined ? String.fromCharCode(65 + q.answer) : '-'}</span>
-                        </p>
+                        </div>
+                        <div className="mb-2 flex flex-wrap items-center gap-2">
+                          <span className="text-space-900/70">正确答案：</span>
+                          <span className="font-semibold text-mint">
+                            {q.answer !== undefined ? String.fromCharCode(65 + q.answer) : '-'}
+                            {q.answer !== undefined && q.options?.[q.answer] ? `. ${q.options[q.answer]}` : ''}
+                          </span>
+                          {q.answer !== undefined && q.options?.[q.answer] && hasEnglish(q.options[q.answer]) && (
+                            <SpeakButton text={q.options[q.answer]} size={14} />
+                          )}
+                        </div>
                         {q.explanation && <p className="text-xs text-space-900/60">{q.explanation}</p>}
                       </div>
                     ) : (

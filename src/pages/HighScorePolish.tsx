@@ -15,6 +15,7 @@ import {
   Volume2,
 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import SpeakButton from '@/components/SpeakButton';
 import {
   highScoreWritingModels,
   highScoreSpeakingModels,
@@ -22,6 +23,8 @@ import {
   pronunciationTips,
   nervousnessTips,
 } from '@/data/phase4HighScore';
+
+const hasEnglish = (text: string) => /[a-zA-Z]/.test(text);
 
 type Tab = 'writing' | 'speaking';
 
@@ -93,9 +96,15 @@ export default function HighScorePolish() {
         <div className="grid gap-3 sm:grid-cols-2">
           {patterns.map((p) => (
             <div key={p.id} className="rounded-2xl bg-space-900/[0.02] p-4">
-              <p className="mb-1 font-semibold text-space-900">{p.pattern}</p>
+              <p className="mb-1 flex items-start gap-2 font-semibold text-space-900">
+                <span className="flex-1">{p.pattern}</span>
+                <SpeakButton text={p.pattern} size={14} />
+              </p>
               <p className="mb-1 text-xs text-space-900/60">{p.meaning}</p>
-              <p className="text-sm italic text-space-900/80">{p.example}</p>
+              <p className="flex items-start gap-2 text-sm italic text-space-900/80">
+                <span className="flex-1">{p.example}</span>
+                <SpeakButton text={p.example} size={14} />
+              </p>
             </div>
           ))}
         </div>
@@ -139,7 +148,10 @@ export default function HighScorePolish() {
                   <div className="rounded-2xl bg-space-900/[0.02] p-4">
                     <div className="mb-2 flex items-center justify-between">
                       <p className="text-xs font-semibold text-space-900/50">范文内容</p>
-                      <span className="text-xs text-space-900/40">建议背诵</span>
+                      <div className="flex items-center gap-2">
+                        <SpeakButton text={model.content} size={14} label="朗读全文" />
+                        <span className="text-xs text-space-900/40">建议背诵</span>
+                      </div>
                     </div>
                     <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-space-900/80">
                       {model.content}
@@ -194,7 +206,8 @@ export default function HighScorePolish() {
                   <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-mint text-xs font-bold text-space-900">
                     {idx + 1}
                   </span>
-                  {tip}
+                  <span className="flex-1">{tip}</span>
+                  {hasEnglish(tip) && <SpeakButton text={tip} size={14} />}
                 </li>
               ))}
             </ul>

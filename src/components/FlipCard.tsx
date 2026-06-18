@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Volume2, RotateCcw, Check, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { speak } from '@/lib/speech';
+import SpeakButton from '@/components/SpeakButton';
 import type { Word } from '@/types';
 
 interface FlipCardProps {
@@ -12,12 +14,7 @@ interface FlipCardProps {
 export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
 
-  const speak = () => {
-    const utterance = new SpeechSynthesisUtterance(word.english);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
-  };
+  const handleSpeak = () => speak(word.english);
 
   return (
     <div className="mx-auto w-full max-w-md">
@@ -29,7 +26,7 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                speak();
+                handleSpeak();
               }}
               className="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur-sm transition-colors hover:bg-white/30"
             >
@@ -45,7 +42,10 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
                   {word.partOfSpeech}
                 </span>
               )}
-              <p className="mt-4 text-lg italic text-space-900/70">"{word.example}"</p>
+              <p className="mt-4 flex items-center justify-center gap-2 text-lg italic text-space-900/70">
+                "{word.example}"
+                <SpeakButton text={word.example} size={16} />
+              </p>
 
               <div className="mt-4 w-full space-y-2 text-left text-sm">
                 {word.collocation && (
@@ -72,7 +72,7 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                speak();
+                handleSpeak();
               }}
               className="mt-4 flex items-center gap-2 rounded-full bg-nebula/10 px-4 py-2 text-sm font-semibold text-nebula transition-colors hover:bg-nebula/20"
             >

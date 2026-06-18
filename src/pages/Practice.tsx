@@ -5,6 +5,8 @@ import Layout from '@/components/Layout';
 import { practiceExercises } from '@/data/practiceExercises';
 import { useProgressStore } from '@/stores/progressStore';
 import PhaseSelector from '@/components/PhaseSelector';
+import { speak } from '@/lib/speech';
+import SpeakButton from '@/components/SpeakButton';
 import { getLevelsByPhase } from '@/types';
 import type { PracticeCategory, PracticeExercise } from '@/types';
 
@@ -15,12 +17,7 @@ const categories: { key: PracticeCategory; label: string; icon: React.ReactNode;
   { key: 'speaking', label: '口语专项', icon: <MessageCircle size={22} />, color: 'from-mint/30 to-mint/10', dot: 'bg-mint' },
 ];
 
-const playAudio = (text: string) => {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = 'en-US';
-  utterance.rate = 0.8;
-  window.speechSynthesis.speak(utterance);
-};
+const isEnglishText = (text: string) => /[a-zA-Z]/.test(text) && !/[\u4e00-\u9fa5]/.test(text);
 
 function ListeningCard({ exercise }: { exercise: PracticeExercise }) {
   const [selected, setSelected] = useState<number | null>(null);
@@ -36,7 +33,7 @@ function ListeningCard({ exercise }: { exercise: PracticeExercise }) {
   return (
     <div className="space-y-4">
       <button
-        onClick={() => playAudio(exercise.audioText || '')}
+        onClick={() => speak(exercise.audioText || '', { rate: 0.8 })}
         className="flex h-16 w-full items-center justify-center gap-2 rounded-2xl bg-nebula text-white shadow-glow-sm transition-transform hover:scale-[1.02]"
       >
         <Volume2 size={24} />
@@ -98,22 +95,26 @@ function ReadingCard({ exercise }: { exercise: PracticeExercise }) {
           const showCorrect = showResult && isCorrect;
           const showWrong = showResult && isSelected && !isCorrect;
           return (
-            <button
-              key={idx}
-              disabled={showResult}
-              onClick={() => handleSelect(idx)}
-              className={`flex items-center justify-between rounded-2xl border-2 px-5 py-4 text-left font-display font-semibold transition-all ${
-                showCorrect
-                  ? 'border-mint bg-mint/10 text-mint'
-                  : showWrong
-                    ? 'border-coral bg-coral/10 text-coral'
-                    : 'border-space-900/10 bg-white hover:border-coral hover:text-coral'
-              }`}
-            >
-              {option}
-              {showCorrect && <CheckCircle size={20} />}
-              {showWrong && <XCircle size={20} />}
-            </button>
+            <div key={idx} className="flex items-center gap-2">
+              <button
+                disabled={showResult}
+                onClick={() => handleSelect(idx)}
+                className={`flex flex-1 items-center justify-between rounded-2xl border-2 px-5 py-4 text-left font-display font-semibold transition-all ${
+                  showCorrect
+                    ? 'border-mint bg-mint/10 text-mint'
+                    : showWrong
+                      ? 'border-coral bg-coral/10 text-coral'
+                      : 'border-space-900/10 bg-white hover:border-coral hover:text-coral'
+                }`}
+              >
+                <span>{option}</span>
+                <span className="flex items-center gap-2">
+                  {showCorrect && <CheckCircle size={20} />}
+                  {showWrong && <XCircle size={20} />}
+                </span>
+              </button>
+              {!showResult && isEnglishText(option) && <SpeakButton text={option} size={16} />}
+            </div>
           );
         })}
       </div>
@@ -132,7 +133,10 @@ function WritingCard({ exercise }: { exercise: PracticeExercise }) {
     <div className="space-y-4">
       {exercise.sample && (
         <div className="rounded-2xl bg-ocean/10 p-4">
-          <p className="mb-2 font-display font-bold text-ocean">参考范文</p>
+          <p className="mb-2 flex items-center gap-2 font-display font-bold text-ocean">
+            参考范文
+            <SpeakButton text={exercise.sample} size={16} />
+          </p>
           <p className="whitespace-pre-line text-sm leading-relaxed text-space-900/80">{exercise.sample}</p>
         </div>
       )}
@@ -160,13 +164,13 @@ function SpeakingCard({ exercise }: { exercise: PracticeExercise }) {
         </div>
       )}
       <button
-        onClick={() => playAudio(exercise.sample || '')}
+        onClick={() => speak(exercise.sample || '')}
         className="inline-flex items-center gap-2 rounded-full bg-nebula/10 px-4 py-2 text-sm font-semibold text-nebula transition-colors hover:bg-nebula/20"
       >
         <Volume2 size={18} /> 播放参考发音
       </button>
       <button
-        onClick={() => playAudio(exercise.content)}
+        onClick={() => speak(exercise.content)}
         className="ml-2 inline-flex items-center gap-2 rounded-full bg-mint/10 px-4 py-2 text-sm font-semibold text-mint transition-colors hover:bg-mint/20"
       >
         <Mic size={18} /> 开始跟读练习

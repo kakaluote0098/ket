@@ -11,6 +11,7 @@ import {
   Volume2,
 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import SpeakButton from '@/components/SpeakButton';
 import { phase1PhonicsLessons } from '@/data/phase1Phonics';
 
 export default function Phonics() {
@@ -113,7 +114,10 @@ export default function Phonics() {
                   <div className="grid gap-3 sm:grid-cols-2">
                     {lesson.examples.map((example, eIdx) => (
                       <div key={eIdx} className="rounded-2xl bg-white/60 p-4">
-                        <p className="mb-1 font-semibold text-space-900">{example.text}</p>
+                        <div className="mb-1 flex items-center gap-2">
+                          <p className="font-semibold text-space-900">{example.text}</p>
+                          <SpeakButton text={example.text} size={16} />
+                        </div>
                         {example.phonetic && (
                           <p className="mb-1 text-sm text-nebula">{example.phonetic}</p>
                         )}
@@ -132,9 +136,10 @@ export default function Phonics() {
                       {lesson.practiceWords.map((word) => (
                         <span
                           key={word}
-                          className="rounded-full bg-white/60 px-3 py-1 text-sm font-semibold text-space-900"
+                          className="inline-flex items-center gap-1 rounded-full bg-white/60 px-3 py-1 text-sm font-semibold text-space-900"
                         >
                           {word}
+                          <SpeakButton text={word} size={14} className="p-1" />
                         </span>
                       ))}
                     </div>

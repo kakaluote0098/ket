@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Volume2, CheckCircle, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { speak } from '@/lib/speech';
 import type { ListeningQuestion } from '@/types';
 
 interface ListeningCardProps {
@@ -12,12 +13,7 @@ export default function ListeningCard({ question, onAnswer }: ListeningCardProps
   const [selected, setSelected] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
-  const play = () => {
-    const utterance = new SpeechSynthesisUtterance(question.audioText);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
-  };
+  const play = () => speak(question.audioText, { rate: 0.85 });
 
   const handleSelect = (index: number) => {
     if (showResult) return;

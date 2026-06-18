@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Clock, ClipboardList, MessageCircle, Volume2 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import SpeakButton from '@/components/SpeakButton';
 import { examGuides } from '@/data/examGuides';
 import type { KETModule } from '@/types';
 
@@ -142,12 +143,16 @@ export default function ExamGuide() {
           <h3 className="font-display text-xl font-bold text-space-900">典型例题</h3>
         </div>
         <div className="rounded-2xl bg-space-900/[0.02] p-5">
-          <p className="mb-4 leading-relaxed text-space-900/80">{guide.sample.question}</p>
+          <div className="mb-4 flex items-start gap-2">
+            <p className="flex-1 leading-relaxed text-space-900/80">{guide.sample.question}</p>
+            <SpeakButton text={guide.sample.question} size={16} className="ml-1 shrink-0 p-1" />
+          </div>
           {guide.sample.options && (
             <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
               {guide.sample.options.map((option, idx) => (
-                <div key={idx} className="rounded-xl bg-white p-3 text-sm font-medium text-space-900 shadow-sm">
-                  {option}
+                <div key={idx} className="flex items-center justify-between gap-2 rounded-xl bg-white p-3 text-sm font-medium text-space-900 shadow-sm">
+                  <span>{option}</span>
+                  <SpeakButton text={option} size={14} className="ml-1 shrink-0 p-1" />
                 </div>
               ))}
             </div>

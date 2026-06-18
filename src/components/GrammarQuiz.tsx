@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CheckCircle, XCircle, Lightbulb } from 'lucide-react';
 import type { GrammarQuestion } from '@/types';
+import SpeakButton from '@/components/SpeakButton';
 
 interface GrammarQuizProps {
   question: GrammarQuestion;
@@ -21,7 +22,10 @@ export default function GrammarQuiz({ question, onAnswer }: GrammarQuizProps) {
   return (
     <div className="mx-auto w-full max-w-2xl">
       <div className="card mb-6">
-        <p className="text-lg font-medium leading-relaxed text-space-900">{question.question}</p>
+        <div className="flex items-start gap-2">
+          <p className="flex-1 text-lg font-medium leading-relaxed text-space-900">{question.question}</p>
+          <SpeakButton text={question.question} size={16} className="ml-1 shrink-0 p-1" />
+        </div>
       </div>
 
       <div className="grid gap-3">
@@ -44,9 +48,14 @@ export default function GrammarQuiz({ question, onAnswer }: GrammarQuizProps) {
                     : 'border-space-900/10 bg-white hover:border-nebula hover:text-nebula'
               }`}
             >
-              {option}
-              {showCorrect && <CheckCircle size={22} />}
-              {showWrong && <XCircle size={22} />}
+              <span className="flex-1">{option}</span>
+              <div className="flex items-center gap-2">
+                {showCorrect && <CheckCircle size={22} />}
+                {showWrong && <XCircle size={22} />}
+                <span onClick={(e) => e.stopPropagation()}>
+                  <SpeakButton text={option} size={14} className="p-1" />
+                </span>
+              </div>
             </button>
           );
         })}

@@ -14,8 +14,11 @@ import {
   Target,
 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import SpeakButton from '@/components/SpeakButton';
 import { phase4PaperReviews } from '@/data/phase4PaperReviews';
 import { phase4MockExams } from '@/data/phase4MockExams';
+
+const hasEnglish = (text: string) => /[a-zA-Z]/.test(text);
 
 export default function PaperReview() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -126,8 +129,15 @@ export default function PaperReview() {
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-ocean text-sm font-bold text-white">
                     {idx + 1}
                   </div>
-                  <div>
-                    <p className="font-semibold text-space-900">{question?.question ?? review.testPoint}</p>
+                  <div className="flex-1">
+                    <p className="flex items-start gap-2 font-semibold text-space-900">
+                      <span className="flex-1">{question?.question ?? review.testPoint}</span>
+                      {question?.question && hasEnglish(question.question) && (
+                        <span onClick={(e) => e.stopPropagation()}>
+                          <SpeakButton text={question.question} size={14} />
+                        </span>
+                      )}
+                    </p>
                     <p className="mt-1 text-xs text-space-900/60">
                       <Target size={12} className="mr-1 inline" />
                       考点：{review.testPoint}

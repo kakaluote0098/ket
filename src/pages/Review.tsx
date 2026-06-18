@@ -2,8 +2,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AlertCircle, ArrowLeft, ArrowRight, BookOpen, CheckCircle2, Layers, Lightbulb, MessageCircle, PenTool, Search, Target } from 'lucide-react';
 import Layout from '@/components/Layout';
+import SpeakButton from '@/components/SpeakButton';
 import { phase4ReviewTopics, reviewCategories } from '@/data/phase4Review';
 import type { ReviewTopic } from '@/data/phase4Review';
+
+const hasEnglish = (text: string) => /[a-zA-Z]/.test(text);
 
 const categoryIcons: Record<ReviewTopic['category'], React.ReactNode> = {
   vocabulary: <BookOpen size={22} />,
@@ -121,7 +124,8 @@ export default function Review() {
                       <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-star text-xs font-bold text-space-900">
                         {idx + 1}
                       </span>
-                      {example}
+                      <span className="flex-1">{example}</span>
+                      {hasEnglish(example) && <SpeakButton text={example} size={14} />}
                     </li>
                   ))}
                 </ul>

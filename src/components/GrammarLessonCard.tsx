@@ -1,4 +1,5 @@
 import { BookOpen, Lightbulb } from 'lucide-react';
+import SpeakButton from '@/components/SpeakButton';
 import type { GrammarLesson } from '@/types';
 
 interface GrammarLessonCardProps {
@@ -29,8 +30,9 @@ export default function GrammarLessonCard({ lesson, index, color = '#118AB2' }: 
         </div>
         <ul className="space-y-2">
           {lesson.examples.map((example, i) => (
-            <li key={i} className="rounded-xl bg-white p-3 font-medium text-space-900 shadow-sm">
-              {example}
+            <li key={i} className="flex items-center justify-between gap-2 rounded-xl bg-white p-3 font-medium text-space-900 shadow-sm">
+              <span>{example}</span>
+              <SpeakButton text={example} size={16} />
             </li>
           ))}
         </ul>

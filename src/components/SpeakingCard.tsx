@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { Volume2, Mic, Square, Star } from 'lucide-react';
+import { speak } from '@/lib/speech';
 
 interface SpeakingCardProps {
   sentence: string;
@@ -11,12 +12,7 @@ export default function SpeakingCard({ sentence, onComplete }: SpeakingCardProps
   const [score, setScore] = useState<number | null>(null);
   const timerRef = useRef<number | null>(null);
 
-  const speak = () => {
-    const utterance = new SpeechSynthesisUtterance(sentence);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
-  };
+  const handleSpeak = () => speak(sentence, { rate: 0.85 });
 
   const startRecording = () => {
     setRecording(true);
@@ -39,7 +35,7 @@ export default function SpeakingCard({ sentence, onComplete }: SpeakingCardProps
       <div className="card mb-8">
         <p className="font-display text-2xl font-bold leading-relaxed text-space-900">{sentence}</p>
         <button
-          onClick={speak}
+          onClick={handleSpeak}
           className="mt-4 inline-flex items-center gap-2 rounded-full bg-nebula/10 px-4 py-2 text-sm font-semibold text-nebula transition-colors hover:bg-nebula/20"
         >
           <Volume2 size={18} /> 播放原音

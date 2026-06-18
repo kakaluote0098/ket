@@ -12,6 +12,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import Layout from '@/components/Layout';
+import SpeakButton from '@/components/SpeakButton';
 import { phase1GrammarLessons } from '@/data/phase1Grammar';
 
 export default function GrammarFoundation() {
@@ -104,7 +105,10 @@ export default function GrammarFoundation() {
                     <div className="space-y-3">
                       {lesson.examples.map((example, eIdx) => (
                         <div key={eIdx} className="rounded-xl bg-white/60 p-3">
-                          <p className="font-semibold text-space-900">{example.english}</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-semibold text-space-900">{example.english}</p>
+                            <SpeakButton text={example.english} size={16} />
+                          </div>
                           <p className="text-sm text-space-900/70">{example.chinese}</p>
                           {example.highlight && (
                             <p className="mt-1 text-xs text-mint">{example.highlight}</p>
@@ -137,9 +141,13 @@ export default function GrammarFoundation() {
                       {lesson.practice.map((item, pIdx) => {
                         const key = `${lesson.id}-${pIdx}`;
                         const show = showAnswer[key];
+                        const englishPart = item.question.split(/[（(]/)[0].trim();
                         return (
                           <div key={pIdx} className="rounded-xl bg-white/60 p-3">
-                            <p className="mb-2 text-sm text-space-900/80">{item.question}</p>
+                            <div className="mb-2 flex items-center gap-2">
+                              <p className="text-sm text-space-900/80">{item.question}</p>
+                              <SpeakButton text={englishPart} size={16} />
+                            </div>
                             <button
                               onClick={() => toggleAnswer(key)}
                               className="rounded-lg bg-star px-3 py-1 text-xs font-semibold text-space-900 transition-colors hover:bg-star/80"
