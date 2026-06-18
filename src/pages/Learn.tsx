@@ -93,6 +93,13 @@ const modules = [
     to: '/learn/vocabulary-foundation',
     color: 'bg-gradient-to-br from-nebula/30 to-nebula/10',
   },
+  {
+    icon: '✏️',
+    title: '语法句型',
+    desc: '第一阶段零基础语法全覆盖',
+    to: '/learn/grammar-foundation',
+    color: 'bg-gradient-to-br from-ocean/30 to-ocean/10',
+  },
 ];
 
 export default function Learn() {
