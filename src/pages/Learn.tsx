@@ -72,6 +72,13 @@ const modules = [
     to: '/learn/paper-review',
     color: 'bg-gradient-to-br from-ocean/30 to-ocean/10',
   },
+  {
+    icon: '✨',
+    title: '高分打磨提升',
+    desc: '高分范文背诵、口语发音与临场表达',
+    to: '/learn/high-score',
+    color: 'bg-gradient-to-br from-mint/30 to-mint/10',
+  },
 ];
 
 export default function Learn() {
