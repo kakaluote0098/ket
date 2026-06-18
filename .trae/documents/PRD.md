@@ -40,6 +40,35 @@ KET 探索星球是一款面向小学阶段的沉浸式在线英语学习平台�
 | 我的路径 | 推荐路线 | 根据弱项自动生成下一步学习建议 |
 | 我的路径 | 每日目标 | 可调整的每日单词/练习目标 |
 
+### 2.4 课程内容规划
+
+#### 2.4.1 基础词汇
+
+平台覆盖小学阶段 KET 备考所需的八大类生活化基础词汇，累计 400-450 个高频词。学生需达到会读、会拼、会释义、会简单应用的目标。
+
+| 类别 | 示例主题 | 目标数量 |
+|------|----------|----------|
+| 校园 | classroom, pencil, teacher, homework | 50-60 |
+| 家庭 | mother, brother, house, kitchen | 50-60 |
+| 食物 | apple, bread, breakfast, vegetable | 50-60 |
+| 动物 | cat, elephant, bird, zoo | 50-60 |
+| 颜色 | red, purple, brown, colourful | 30-40 |
+| 数字 | one, twenty, hundred, birthday | 40-50 |
+| 服饰 | shirt, trousers, shoes, hat | 40-50 |
+| 天气 | sunny, rainy, snow, temperature | 40-50 |
+
+#### 2.4.2 基础语法
+
+课程按级别递进讲解以下语法点：
+
+- **代词**：人称代词（I / you / he / she / it / we / they）、物主代词（my / your / his / her / its / our / their）
+- **名词**：名词单复数变化规则、可数名词与不可数名词区分
+- **be 动词**：am / is / are 的核心用法与缩写形式
+- **句型**：基础主谓宾（SVO）句型、陈述句与疑问句基本结构
+- **时态**：一般现在时的基础用法（第三人称单数、否定句、疑问句）
+- **时间状语**：every day, usually, often, sometimes, always 等常用时间状语
+- **介词**：in / on / at / under / next to / between 等基础方位与时间介词
+
 ## 3. 核心流程
 
 学生进入首页后查看今日任务，点击任务进入对应学习模块；完成练习后系统记录得分并更新能力数据。学生也可在课程中心按级别选择单元学习，或在“我的路径”中查看基于历史表现的个性化推荐。所有进度保存在浏览器本地存储，刷新页面后自动恢复。

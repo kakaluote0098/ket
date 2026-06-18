@@ -56,11 +56,14 @@ flowchart TB
 核心数据类型示例：
 
 ```typescript
+type WordCategory = 'school' | 'family' | 'food' | 'animals' | 'colors' | 'numbers' | 'clothes' | 'weather';
+
 interface Word {
   id: string;
   english: string;
   chinese: string;
   example: string;
+  category: WordCategory;
   level: 'starter' | 'mover' | 'flyer' | 'ket';
 }
 
@@ -107,6 +110,7 @@ erDiagram
         string english
         string chinese
         string example
+        string category
         string level
     }
     GRAMMAR_QUESTION {
@@ -158,8 +162,9 @@ erDiagram
 ### 5.2 初始数据
 
 - 每个级别预置 6-8 个课程单元。
+- 词汇库包含 400-450 个高频基础词，覆盖校园、家庭、食物、动物、颜色、数字、服饰、天气八大类别。
 - 每个单元包含 8-12 个单词、5-8 道语法题、3-5 道听力题。
-- 每个单元配置 1-3 个基础语法讲解点（GrammarLesson）。
+- 每个单元配置 1-3 个基础语法讲解点（GrammarLesson），涵盖人称代词、物主代词、名词单复数、可数/不可数名词、be 动词、SVO 句型、一般现在时、时间状语、基础介词等。
 - 口语跟读使用单元内例句作为练习素材。
 - 用户进度初始化为默认值，首次进入时自动创建。
 

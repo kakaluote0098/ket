@@ -1,10 +1,21 @@
 export type Level = 'starter' | 'mover' | 'flyer' | 'ket';
 
+export type WordCategory =
+  | 'school'
+  | 'family'
+  | 'food'
+  | 'animals'
+  | 'colors'
+  | 'numbers'
+  | 'clothes'
+  | 'weather';
+
 export interface Word {
   id: string;
   english: string;
   chinese: string;
   example: string;
+  category: WordCategory;
   level: Level;
 }
 

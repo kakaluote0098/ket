@@ -1,16 +1,34 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, RotateCcw } from 'lucide-react';
 import Layout from '@/components/Layout';
 import FlipCard from '@/components/FlipCard';
-import { words } from '@/data/words';
+import { words, getWordsByCategory } from '@/data/words';
 import { useProgressStore } from '@/stores/progressStore';
+import type { WordCategory } from '@/types';
+
+const categoryLabels: Record<WordCategory, { label: string; emoji: string }> = {
+  school: { label: '校园', emoji: '🏫' },
+  family: { label: '家庭', emoji: '🏠' },
+  food: { label: '食物', emoji: '🍎' },
+  animals: { label: '动物', emoji: '🐱' },
+  colors: { label: '颜色', emoji: '🎨' },
+  numbers: { label: '数字', emoji: '🔢' },
+  clothes: { label: '服饰', emoji: '👕' },
+  weather: { label: '天气', emoji: '☀️' },
+};
 
 export default function Vocabulary() {
   const [index, setIndex] = useState(0);
+  const [category, setCategory] = useState<WordCategory | 'all'>('all');
   const progress = useProgressStore();
 
-  const shuffled = [...words].sort(() => Math.random() - 0.5);
+  const pool = useMemo(
+    () => (category === 'all' ? words : getWordsByCategory(category)),
+    [category]
+  );
+
+  const shuffled = useMemo(() => [...pool].sort(() => Math.random() - 0.5), [pool]);
   const current = shuffled[index];
 
   const handleMaster = () => {
@@ -30,6 +48,11 @@ export default function Vocabulary() {
 
   const restart = () => setIndex(0);
 
+  const handleCategoryChange = (newCategory: WordCategory | 'all') => {
+    setCategory(newCategory);
+    setIndex(0);
+  };
+
   return (
     <Layout>
       <div className="mb-6 flex items-center gap-3">
@@ -42,6 +65,32 @@ export default function Vocabulary() {
             {index + 1} / {shuffled.length}
           </p>
         </div>
+      </div>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        <button
+          onClick={() => handleCategoryChange('all')}
+          className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+            category === 'all'
+              ? 'bg-nebula text-white shadow-glow-sm'
+              : 'bg-white/60 text-space-900 hover:bg-white'
+          }`}
+        >
+          全部
+        </button>
+        {(Object.keys(categoryLabels) as WordCategory[]).map((key) => (
+          <button
+            key={key}
+            onClick={() => handleCategoryChange(key)}
+            className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+              category === key
+                ? 'bg-mint text-white shadow-glow-sm'
+                : 'bg-white/60 text-space-900 hover:bg-white'
+            }`}
+          >
+            {categoryLabels[key].emoji} {categoryLabels[key].label}
+          </button>
+        ))}
       </div>
 
       <div className="mb-6 h-3 w-full overflow-hidden rounded-full bg-space-900/5">
