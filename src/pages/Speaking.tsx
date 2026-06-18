@@ -1,16 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Layout from '@/components/Layout';
 import SpeakingCard from '@/components/SpeakingCard';
 import { words } from '@/data/words';
 import { useProgressStore } from '@/stores/progressStore';
-
-const sentences = words.map((w) => w.example);
+import PhaseSelector from '@/components/PhaseSelector';
+import { getLevelsByPhase } from '@/types';
 
 export default function Speaking() {
   const [index, setIndex] = useState(0);
   const progress = useProgressStore();
+
+  const sentences = useMemo(() => {
+    const phaseLevels = getLevelsByPhase(progress.currentPhase);
+    return words.filter((w) => phaseLevels.includes(w.level)).map((w) => w.example);
+  }, [progress.currentPhase]);
+
+  useEffect(() => {
+    setIndex(0);
+  }, [progress.currentPhase]);
 
   const handleComplete = (score: number) => {
     const delta = score >= 4 ? 4 : 1;
@@ -34,6 +43,8 @@ export default function Speaking() {
           </p>
         </div>
       </div>
+
+      <PhaseSelector />
 
       <SpeakingCard key={index} sentence={sentences[index]} onComplete={handleComplete} />
 

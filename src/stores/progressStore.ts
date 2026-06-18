@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { UserProgress, Level } from '@/types';
+import type { UserProgress, Level, Phase } from '@/types';
 
 const defaultProgress: UserProgress = {
   streakDays: 1,
@@ -16,6 +16,7 @@ const defaultProgress: UserProgress = {
   badges: [],
   dailyGoalWords: 5,
   dailyGoalExercises: 3,
+  currentPhase: 'phase1',
 };
 
 interface ProgressState extends UserProgress {
@@ -25,6 +26,7 @@ interface ProgressState extends UserProgress {
   updateScore: (key: 'grammarScore' | 'listeningScore' | 'speakingScore' | 'readingScore' | 'writingScore', delta: number) => void;
   completeUnit: (unitId: string) => void;
   setDailyGoal: (words: number, exercises: number) => void;
+  setPhase: (phase: Phase) => void;
   getWeakestSkill: () => keyof UserProgress;
   getRecommendedLevel: () => Level;
 }
@@ -86,6 +88,8 @@ export const useProgressStore = create<ProgressState>()(
         })),
 
       setDailyGoal: (words, exercises) => set({ dailyGoalWords: words, dailyGoalExercises: exercises }),
+
+      setPhase: (phase) => set({ currentPhase: phase }),
 
       getWeakestSkill: () => {
         const state = get();

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Trophy } from 'lucide-react';
 import Layout from '@/components/Layout';
 import ListeningCard from '@/components/ListeningCard';
 import { listeningQuestions } from '@/data/listening';
 import { useProgressStore } from '@/stores/progressStore';
+import PhaseSelector from '@/components/PhaseSelector';
+import { getLevelsByPhase } from '@/types';
 
 export default function Listening() {
   const [index, setIndex] = useState(0);
@@ -12,7 +14,17 @@ export default function Listening() {
   const [correctCount, setCorrectCount] = useState(0);
   const progress = useProgressStore();
 
-  const questions = listeningQuestions;
+  const questions = useMemo(() => {
+    const phaseLevels = getLevelsByPhase(progress.currentPhase);
+    return listeningQuestions.filter((q) => phaseLevels.includes(q.level));
+  }, [progress.currentPhase]);
+
+  useEffect(() => {
+    setIndex(0);
+    setFinished(false);
+    setCorrectCount(0);
+  }, [progress.currentPhase]);
+
   const current = questions[index];
 
   const handleAnswer = (correct: boolean) => {
@@ -49,6 +61,8 @@ export default function Listening() {
           </p>
         </div>
       </div>
+
+      <PhaseSelector />
 
       {!finished ? (
         <>

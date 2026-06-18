@@ -1,11 +1,12 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, RotateCcw } from 'lucide-react';
 import Layout from '@/components/Layout';
 import FlipCard from '@/components/FlipCard';
-import { words, getWordsByCategory } from '@/data/words';
+import { words } from '@/data/words';
 import { useProgressStore } from '@/stores/progressStore';
-import type { WordCategory } from '@/types';
+import PhaseSelector from '@/components/PhaseSelector';
+import { getLevelsByPhase, type WordCategory } from '@/types';
 
 const categoryLabels: Record<WordCategory, { label: string; emoji: string }> = {
   school: { label: '校园', emoji: '🏫' },
@@ -21,6 +22,7 @@ const categoryLabels: Record<WordCategory, { label: string; emoji: string }> = {
   hobby: { label: '兴趣', emoji: '🎸' },
   sports: { label: '运动', emoji: '⚽' },
   festival: { label: '节日', emoji: '🎉' },
+  ket_core: { label: 'KET核心', emoji: '⭐' },
 };
 
 export default function Vocabulary() {
@@ -28,10 +30,14 @@ export default function Vocabulary() {
   const [category, setCategory] = useState<WordCategory | 'all'>('all');
   const progress = useProgressStore();
 
-  const pool = useMemo(
-    () => (category === 'all' ? words : getWordsByCategory(category)),
-    [category]
-  );
+  const pool = useMemo(() => {
+    const phaseLevels = getLevelsByPhase(progress.currentPhase);
+    let filtered = words.filter((w) => phaseLevels.includes(w.level));
+    if (category !== 'all') {
+      filtered = filtered.filter((w) => w.category === category);
+    }
+    return filtered;
+  }, [category, progress.currentPhase]);
 
   const shuffled = useMemo(() => [...pool].sort(() => Math.random() - 0.5), [pool]);
   const current = shuffled[index];
@@ -58,6 +64,10 @@ export default function Vocabulary() {
     setIndex(0);
   };
 
+  useEffect(() => {
+    setIndex(0);
+  }, [progress.currentPhase]);
+
   return (
     <Layout>
       <div className="mb-6 flex items-center gap-3">
@@ -72,7 +82,9 @@ export default function Vocabulary() {
         </div>
       </div>
 
-      <div className="mb-4 flex gap-2 overflow-x-auto pb-2">
+      <PhaseSelector />
+
+      <div className="mb-4 mt-4 flex gap-2 overflow-x-auto pb-2">
         <button
           onClick={() => handleCategoryChange('all')}
           className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${

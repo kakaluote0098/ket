@@ -1,4 +1,5 @@
 import type { Word } from '@/types';
+import { phase3Words } from './phase3Words';
 
 export const words: Word[] = [
   // ==================== school (55) ====================
@@ -833,6 +834,9 @@ export const words: Word[] = [
   { id: 'fe53', english: 'temple', chinese: '寺庙', example: 'We visited a temple.', category: 'festival', level: 'flyer', partOfSpeech: 'n.', collocation: 'go to the temple', phrase: 'temple fair', synonyms: ['shrine'] },
   { id: 'fe54', english: 'pray', chinese: '祈祷', example: 'We pray for good luck.', category: 'festival', level: 'ket', partOfSpeech: 'v.', collocation: 'pray for', phrase: 'pray together', synonyms: ['wish'] },
   { id: 'fe55', english: 'blessing', chinese: '祝福', example: 'The meal began with a blessing.', category: 'festival', level: 'flyer', partOfSpeech: 'n.', collocation: 'give a blessing', phrase: 'count your blessings', synonyms: ['prayer'] },
+
+  // ==================== KET 核心强化（第三阶段新增 250 词）====================
+  ...phase3Words,
 ];
 
 export const getWordsByLevel = (level?: string) =>

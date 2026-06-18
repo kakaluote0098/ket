@@ -24,7 +24,8 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
       <div className={cn('flip-card aspect-[4/3] cursor-pointer', flipped && 'flipped')} onClick={() => setFlipped(!flipped)}>
         <div className="flip-card-inner relative h-full w-full">
           <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] bg-gradient-to-br from-nebula to-ocean p-8 text-center text-white shadow-glow">
-            <span className="mb-4 text-5xl font-bold">{word.english}</span>
+            <span className="mb-2 text-5xl font-bold">{word.english}</span>
+            <span className="mb-4 text-2xl font-medium opacity-90">{word.chinese}</span>
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -34,7 +35,7 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
             >
               <Volume2 size={18} /> 点击发音
             </button>
-            <p className="mt-6 text-sm opacity-80">点击卡片查看释义</p>
+            <p className="mt-6 text-sm opacity-80">点击卡片查看例句与搭配</p>
           </div>
           <div className="flip-card-back absolute inset-0 flex flex-col items-center rounded-[2rem] bg-white p-6 text-center text-space-900 shadow-glow">
             <div className="flex w-full flex-1 flex-col items-center justify-center overflow-y-auto">
