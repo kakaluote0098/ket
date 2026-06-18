@@ -86,6 +86,13 @@ const modules = [
     to: '/learn/phonics',
     color: 'bg-gradient-to-br from-mint/30 to-mint/10',
   },
+  {
+    icon: '📖',
+    title: '词汇积累',
+    desc: '第一阶段八大场景基础词汇与记忆方法',
+    to: '/learn/vocabulary-foundation',
+    color: 'bg-gradient-to-br from-nebula/30 to-nebula/10',
+  },
 ];
 
 export default function Learn() {
