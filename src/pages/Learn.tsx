@@ -65,6 +65,13 @@ const modules = [
     to: '/learn/mock-exam',
     color: 'bg-gradient-to-br from-coral/30 to-coral/10',
   },
+  {
+    icon: '📋',
+    title: '真题逐套精讲',
+    desc: '逐题精讲复盘，突破分数瓶颈',
+    to: '/learn/paper-review',
+    color: 'bg-gradient-to-br from-ocean/30 to-ocean/10',
+  },
 ];
 
 export default function Learn() {
