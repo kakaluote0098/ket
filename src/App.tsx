@@ -6,6 +6,7 @@ import Vocabulary from '@/pages/Vocabulary';
 import Grammar from '@/pages/Grammar';
 import Speaking from '@/pages/Speaking';
 import Listening from '@/pages/Listening';
+import ExamGuide from '@/pages/ExamGuide';
 import Progress from '@/pages/Progress';
 import MyPath from '@/pages/MyPath';
 import UnitDetail from '@/pages/UnitDetail';
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/learn/grammar" element={<Grammar />} />
         <Route path="/learn/speaking" element={<Speaking />} />
         <Route path="/learn/listening" element={<Listening />} />
+        <Route path="/learn/exam" element={<ExamGuide />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/path" element={<MyPath />} />
       </Routes>

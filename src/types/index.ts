@@ -47,6 +47,29 @@ export interface GrammarLesson {
   level: Level;
 }
 
+export type KETModule = 'reading' | 'writing' | 'listening' | 'speaking';
+
+export interface ExamGuide {
+  id: string;
+  module: KETModule;
+  title: string;
+  duration: string;
+  parts: number;
+  score: string;
+  rules: string[];
+  questionTypes: {
+    name: string;
+    description: string;
+    tips: string[];
+  }[];
+  sample: {
+    question: string;
+    options?: string[];
+    answer?: string;
+    explanation: string;
+  };
+}
+
 export interface ListeningQuestion {
   id: string;
   audioText: string;

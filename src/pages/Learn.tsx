@@ -30,6 +30,13 @@ const modules = [
     to: '/learn/listening',
     color: 'bg-gradient-to-br from-star/40 to-star/10',
   },
+  {
+    icon: '📝',
+    title: '题型认知',
+    desc: '了解 KET 四大模块规则与答题逻辑',
+    to: '/learn/exam',
+    color: 'bg-gradient-to-br from-coral/30 to-coral/10',
+  },
 ];
 
 export default function Learn() {
