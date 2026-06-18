@@ -1,0 +1,81 @@
+import { useState } from 'react';
+import { Volume2, RotateCcw, Check, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import type { Word } from '@/types';
+
+interface FlipCardProps {
+  word: Word;
+  onMaster: () => void;
+  onWeak: () => void;
+}
+
+export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
+  const [flipped, setFlipped] = useState(false);
+
+  const speak = () => {
+    const utterance = new SpeechSynthesisUtterance(word.english);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.85;
+    window.speechSynthesis.speak(utterance);
+  };
+
+  return (
+    <div className="mx-auto w-full max-w-md">
+      <div className={cn('flip-card aspect-[4/3] cursor-pointer', flipped && 'flipped')} onClick={() => setFlipped(!flipped)}>
+        <div className="flip-card-inner relative h-full w-full">
+          <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] bg-gradient-to-br from-nebula to-ocean p-8 text-center text-white shadow-glow">
+            <span className="mb-4 text-5xl font-bold">{word.english}</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                speak();
+              }}
+              className="flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur-sm transition-colors hover:bg-white/30"
+            >
+              <Volume2 size={18} /> 点击发音
+            </button>
+            <p className="mt-6 text-sm opacity-80">点击卡片查看释义</p>
+          </div>
+          <div className="flip-card-back absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] bg-white p-8 text-center text-space-900 shadow-glow">
+            <p className="text-3xl font-bold text-nebula">{word.chinese}</p>
+            <p className="mt-4 text-lg italic text-space-900/70">"{word.example}"</p>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                speak();
+              }}
+              className="mt-6 flex items-center gap-2 rounded-full bg-nebula/10 px-4 py-2 text-sm font-semibold text-nebula transition-colors hover:bg-nebula/20"
+            >
+              <Volume2 size={18} /> 朗读例句
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6 flex justify-center gap-4">
+        <button
+          onClick={onWeak}
+          className="flex items-center gap-2 rounded-full bg-coral/10 px-6 py-3 font-display font-semibold text-coral transition-all hover:bg-coral hover:text-white"
+        >
+          <X size={18} /> 还需加强
+        </button>
+        <button
+          onClick={() => {
+            setFlipped(false);
+            onMaster();
+          }}
+          className="flex items-center gap-2 rounded-full bg-mint/10 px-6 py-3 font-display font-semibold text-mint transition-all hover:bg-mint hover:text-white"
+        >
+          <Check size={18} /> 已掌握
+        </button>
+      </div>
+
+      <button
+        onClick={() => setFlipped(false)}
+        className="mx-auto mt-4 flex items-center gap-1 text-sm font-semibold text-space-900/50 hover:text-nebula"
+      >
+        <RotateCcw size={14} /> 重置卡片
+      </button>
+    </div>
+  );
+}

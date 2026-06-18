@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --space-900: #1a1f4b;
+  --space-800: #232a5c;
+  --nebula: #7b61ff;
+  --star: #ffd166;
+  --mint: #06d6a0;
+  --coral: #ef476f;
+}
+
+@layer base {
+  html {
+    font-family: 'Nunito', system-ui, sans-serif;
+    color: #1a1f4b;
+    background: linear-gradient(135deg, #f7f8ff 0%, #eef1ff 50%, #fff9ec 100%);
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-3xl bg-white/80 p-5 shadow-soft backdrop-blur-sm transition-all duration-300;
+  }
+
+  .card:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-nebula px-6 py-3 font-display font-semibold text-white shadow-glow-sm transition-all hover:-translate-y-0.5 hover:bg-nebula/90 hover:shadow-glow;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-space-900/10 bg-white px-5 py-2.5 font-display font-semibold text-space-900 transition-all hover:border-nebula hover:text-nebula;
+  }
+
+  .page-container {
+    @apply mx-auto max-w-6xl px-4 pb-28 pt-6 md:pb-8 md:pt-10;
+  }
+}
+
+/* Flip card utility */
+.flip-card {
+  perspective: 1000px;
+}
+
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(26, 31, 75, 0.05);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(123, 97, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(123, 97, 255, 0.5);
+}
