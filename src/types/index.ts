@@ -11,6 +11,7 @@ export interface Word {
 export interface GrammarQuestion {
   id: string;
   question: string;
+  translation: string;
   options: string[];
   answer: number;
   explanation: string;

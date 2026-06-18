@@ -4,6 +4,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g1',
     question: 'I ___ a student.',
+    translation: '我是一名学生。',
     options: ['am', 'is', 'are', 'be'],
     answer: 0,
     explanation: '第一人称 I 搭配 be 动词 am。',
@@ -12,6 +13,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g2',
     question: 'She ___ a red dress today.',
+    translation: '她今天穿了一条红色的连衣裙。',
     options: ['wear', 'wears', 'wearing', 'to wear'],
     answer: 1,
     explanation: '第三人称单数主语 she 后面的动词要加 -s。',
@@ -20,6 +22,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g3',
     question: 'There ___ three books on the table.',
+    translation: '桌子上有三本书。',
     options: ['is', 'are', 'was', 'be'],
     answer: 1,
     explanation: '后面的名词 three books 是复数，所以用 are。',
@@ -28,6 +31,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g4',
     question: 'Can you ___ me your pen?',
+    translation: '你能把钢笔借给我吗？',
     options: ['lend', 'lends', 'lent', 'lending'],
     answer: 0,
     explanation: '情态动词 can 后面接动词原形。',
@@ -36,6 +40,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g5',
     question: 'I have lived here ___ 2019.',
+    translation: '我从 2019 年起就住在这里。',
     options: ['for', 'since', 'from', 'at'],
     answer: 1,
     explanation: 'since 用于表示从某个时间点开始。',
@@ -44,6 +49,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g6',
     question: 'This book is ___ than that one.',
+    translation: '这本书比那本更有趣。',
     options: ['interesting', 'more interesting', 'most interesting', 'interestinger'],
     answer: 1,
     explanation: '多音节形容词的比较级用 more + 形容词原级。',
@@ -52,6 +58,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g7',
     question: 'If it rains tomorrow, I ___ at home.',
+    translation: '如果明天下雨，我就待在家里。',
     options: ['stay', 'will stay', 'stayed', 'staying'],
     answer: 1,
     explanation: 'if 引导的条件状语从句，主句用一般将来时。',
@@ -60,6 +67,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g8',
     question: 'She asked me where ___ from.',
+    translation: '她问我来自哪里。',
     options: ['do I come', 'I come', 'I came', 'am I coming'],
     answer: 2,
     explanation: '宾语从句用陈述语序，且主句为过去时，从句也用过去时。',
@@ -68,6 +76,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g9',
     question: 'By the time we arrived, the film ___.',
+    translation: '当我们到达时，电影已经开始了。',
     options: ['started', 'has started', 'had started', 'starts'],
     answer: 2,
     explanation: '过去完成时表示在过去某一时间之前已经完成的动作。',
@@ -76,6 +85,7 @@ export const grammarQuestions: GrammarQuestion[] = [
   {
     id: 'g10',
     question: 'Not only Tom but also his brothers ___ good at football.',
+    translation: '不仅汤姆，他的哥哥们也很擅长踢足球。',
     options: ['is', 'are', 'was', 'were'],
     answer: 1,
     explanation: 'not only...but also... 遵循就近原则，brothers 是复数。',

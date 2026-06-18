@@ -53,11 +53,20 @@ export default function GrammarQuiz({ question, onAnswer }: GrammarQuizProps) {
       </div>
 
       {showResult && (
-        <div className="mt-6 flex items-start gap-3 rounded-2xl bg-star/10 p-4 text-space-900">
-          <Lightbulb className="mt-0.5 shrink-0 text-star" size={22} />
-          <div>
-            <p className="font-display font-bold text-star">解析</p>
-            <p className="mt-1 text-sm leading-relaxed">{question.explanation}</p>
+        <div className="mt-6 space-y-3">
+          <div className="flex items-start gap-3 rounded-2xl bg-ocean/10 p-4 text-space-900">
+            <div className="mt-0.5 shrink-0 text-lg">🇨🇳</div>
+            <div>
+              <p className="font-display font-bold text-ocean">句意</p>
+              <p className="mt-1 text-sm leading-relaxed">{question.translation}</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 rounded-2xl bg-star/10 p-4 text-space-900">
+            <Lightbulb className="mt-0.5 shrink-0 text-star" size={22} />
+            <div>
+              <p className="font-display font-bold text-star">解析</p>
+              <p className="mt-1 text-sm leading-relaxed">{question.explanation}</p>
+            </div>
           </div>
         </div>
       )}
