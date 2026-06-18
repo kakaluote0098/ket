@@ -1,4 +1,5 @@
 import type { GrammarQuestion } from '@/types';
+import { phase3GrammarQuestions } from './phase3Grammar';
 
 export const grammarQuestions: GrammarQuestion[] = [
   // 人称代词
@@ -575,6 +576,9 @@ export const grammarQuestions: GrammarQuestion[] = [
     explanation: 'not only...but also... 遵循就近原则，brothers 是复数。',
     level: 'ket',
   },
+
+  // ==================== 第三阶段 KET 语法查漏拔高 ====================
+  ...phase3GrammarQuestions,
 ];
 
 export const getGrammarByLevel = (level?: string) =>

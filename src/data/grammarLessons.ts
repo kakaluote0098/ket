@@ -1,4 +1,5 @@
 import type { GrammarLesson } from '@/types';
+import { phase3GrammarLessons } from './phase3GrammarLessons';
 
 export const grammarLessons: GrammarLesson[] = [
   // 代词
@@ -172,6 +173,9 @@ export const grammarLessons: GrammarLesson[] = [
     tip: '被动语态的时态变化体现在 be 动词上。',
     level: 'ket',
   },
+
+  // ==================== 第三阶段 KET 语法查漏拔高（6 课时）====================
+  ...phase3GrammarLessons,
 ];
 
 export const getGrammarLessonsByLevel = (level?: string) =>
