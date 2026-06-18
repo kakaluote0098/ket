@@ -78,6 +78,23 @@ export interface ListeningQuestion {
   level: Level;
 }
 
+export type PracticeCategory = 'listening' | 'reading' | 'writing' | 'speaking';
+
+export interface PracticeExercise {
+  id: string;
+  category: PracticeCategory;
+  subType: string;
+  title: string;
+  content: string;
+  audioText?: string;
+  options?: string[];
+  answer?: string | number;
+  explanation?: string;
+  sample?: string;
+  tips?: string[];
+  level: Level;
+}
+
 export interface CourseUnit {
   id: string;
   title: string;

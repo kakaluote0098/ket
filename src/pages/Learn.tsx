@@ -37,6 +37,13 @@ const modules = [
     to: '/learn/exam',
     color: 'bg-gradient-to-br from-coral/30 to-coral/10',
   },
+  {
+    icon: '🎯',
+    title: '专项训练',
+    desc: '听、读、写、说分项基础练习',
+    to: '/learn/practice',
+    color: 'bg-gradient-to-br from-star/40 to-star/10',
+  },
 ];
 
 export default function Learn() {
