@@ -12,6 +12,7 @@ import Review from '@/pages/Review';
 import MockExam from '@/pages/MockExam';
 import PaperReview from '@/pages/PaperReview';
 import HighScorePolish from '@/pages/HighScorePolish';
+import Phonics from '@/pages/Phonics';
 import Practice from '@/pages/Practice';
 import Progress from '@/pages/Progress';
 import MyPath from '@/pages/MyPath';
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/learn/mock-exam" element={<MockExam />} />
         <Route path="/learn/paper-review" element={<PaperReview />} />
         <Route path="/learn/high-score" element={<HighScorePolish />} />
+        <Route path="/learn/phonics" element={<Phonics />} />
         <Route path="/learn/practice" element={<Practice />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/path" element={<MyPath />} />

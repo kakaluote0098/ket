@@ -79,6 +79,13 @@ const modules = [
     to: '/learn/high-score',
     color: 'bg-gradient-to-br from-mint/30 to-mint/10',
   },
+  {
+    icon: '🔤',
+    title: '拼读体系',
+    desc: '第一阶段自然拼读，见词能读听音能拼',
+    to: '/learn/phonics',
+    color: 'bg-gradient-to-br from-mint/30 to-mint/10',
+  },
 ];
 
 export default function Learn() {
