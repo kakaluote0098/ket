@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle, Lightbulb, MessageCircle, Mic, PenTool, Volume2, XCircle } from 'lucide-react';
 import Layout from '@/components/Layout';
 import { practiceExercises } from '@/data/practiceExercises';
+import { useProgressStore } from '@/stores/progressStore';
+import PhaseSelector from '@/components/PhaseSelector';
+import { getLevelsByPhase } from '@/types';
 import type { PracticeCategory, PracticeExercise } from '@/types';
 
 const categories: { key: PracticeCategory; label: string; icon: React.ReactNode; color: string; dot: string }[] = [
@@ -184,7 +187,13 @@ function SpeakingCard({ exercise }: { exercise: PracticeExercise }) {
 
 export default function Practice() {
   const [activeCategory, setActiveCategory] = useState<PracticeCategory>('listening');
-  const exercises = practiceExercises.filter((e) => e.category === activeCategory);
+  const progress = useProgressStore();
+
+  const exercises = useMemo(() => {
+    const phaseLevels = getLevelsByPhase(progress.currentPhase);
+    return practiceExercises.filter((e) => e.category === activeCategory && phaseLevels.includes(e.level));
+  }, [activeCategory, progress.currentPhase]);
+
   const category = categories.find((c) => c.key === activeCategory)!;
 
   return (
@@ -195,9 +204,11 @@ export default function Practice() {
         </Link>
         <div>
           <h1 className="text-2xl font-bold text-space-900">专项基础训练</h1>
-          <p className="text-sm text-space-900/60">第二阶段 · 2 课时 · 听、读、写、说分项突破</p>
+          <p className="text-sm text-space-900/60">听、读、写、说分项突破</p>
         </div>
       </div>
+
+      <PhaseSelector />
 
       {/* Category Tabs */}
       <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">

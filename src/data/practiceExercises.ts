@@ -1,4 +1,5 @@
 import type { PracticeExercise } from '@/types';
+import { phase3PracticeExercises } from './phase3PracticeExercises';
 
 export const practiceExercises: PracticeExercise[] = [
   // 听力专项
@@ -163,6 +164,9 @@ export const practiceExercises: PracticeExercise[] = [
     tips: ['先说主题句，再补充细节。', '使用简单连词，如 and, because, so。'],
     level: 'flyer',
   },
+
+  // ==================== 第三阶段 KET 四大模块专项拔高（12 课时）====================
+  ...phase3PracticeExercises,
 ];
 
 export const getExercisesByCategory = (category: PracticeExercise['category']) =>
