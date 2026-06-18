@@ -15,6 +15,7 @@ import HighScorePolish from '@/pages/HighScorePolish';
 import Phonics from '@/pages/Phonics';
 import VocabularyFoundation from '@/pages/VocabularyFoundation';
 import GrammarFoundation from '@/pages/GrammarFoundation';
+import SkillsFoundation from '@/pages/SkillsFoundation';
 import Practice from '@/pages/Practice';
 import Progress from '@/pages/Progress';
 import MyPath from '@/pages/MyPath';
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/learn/phonics" element={<Phonics />} />
         <Route path="/learn/vocabulary-foundation" element={<VocabularyFoundation />} />
         <Route path="/learn/grammar-foundation" element={<GrammarFoundation />} />
+        <Route path="/learn/skills-foundation" element={<SkillsFoundation />} />
         <Route path="/learn/practice" element={<Practice />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/path" element={<MyPath />} />

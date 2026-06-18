@@ -100,6 +100,13 @@ const modules = [
     to: '/learn/grammar-foundation',
     color: 'bg-gradient-to-br from-ocean/30 to-ocean/10',
   },
+  {
+    icon: '📣',
+    title: '听说读写训练',
+    desc: '第一阶段课堂指令、情景对话、规范书写与句子输出',
+    to: '/learn/skills-foundation',
+    color: 'bg-gradient-to-br from-mint/30 to-mint/10',
+  },
 ];
 
 export default function Learn() {
