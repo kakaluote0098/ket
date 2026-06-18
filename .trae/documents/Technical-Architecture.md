@@ -43,6 +43,7 @@ flowchart TB
 | `/learn/grammar` | 语法练习 |
 | `/learn/speaking` | 口语跟读练习 |
 | `/learn/listening` | 听力训练 |
+| `/learn/exam` | 题型认知入门（KET 考试指南） |
 | `/progress` | 学习进度与成就 |
 | `/path` | 我的个性化学习路径 |
 
@@ -89,6 +90,27 @@ interface GrammarLesson {
   examples: string[];
   tip?: string;
   level: Level;
+}
+
+interface ExamGuide {
+  id: string;
+  module: 'reading' | 'writing' | 'listening' | 'speaking';
+  title: string;
+  duration: string;
+  parts: number;
+  score: string;
+  rules: string[];
+  questionTypes: {
+    name: string;
+    description: string;
+    tips: string[];
+  }[];
+  sample: {
+    question: string;
+    options?: string[];
+    answer?: string;
+    explanation: string;
+  };
 }
 
 interface UserProgress {
@@ -176,6 +198,7 @@ erDiagram
 - KET 核心词汇补充固定搭配、基础短语、近义词与词性信息。
 - 每个单元包含 8-12 个单词、5-8 道语法题、3-5 道听力题。
 - 每个单元配置 1-3 个基础语法讲解点（GrammarLesson），涵盖人称代词、物主代词、名词单复数、可数/不可数名词、be 动词、SVO 句型、一般现在时、时间状语、基础介词、现在进行时、一般过去时、形容词/副词比较级、情态动词、并列句、简单状语从句等。
+- 题型认知入门模块提供 KET 阅读、写作、听力、口语四大模块的考试规则、评分标准、题型分类与基础答题逻辑，共 4 课时。
 - 口语跟读使用单元内例句作为练习素材。
 - 用户进度初始化为默认值，首次进入时自动创建。
 
