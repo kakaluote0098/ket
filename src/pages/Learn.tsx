@@ -58,6 +58,13 @@ const modules = [
     to: '/learn/review',
     color: 'bg-gradient-to-br from-star/40 to-star/10',
   },
+  {
+    icon: '⏱️',
+    title: '全真计时模考',
+    desc: '第四阶段真题风格模考，计时训练',
+    to: '/learn/mock-exam',
+    color: 'bg-gradient-to-br from-coral/30 to-coral/10',
+  },
 ];
 
 export default function Learn() {
