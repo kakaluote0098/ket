@@ -16,6 +16,11 @@ const categoryLabels: Record<WordCategory, { label: string; emoji: string }> = {
   numbers: { label: '数字', emoji: '🔢' },
   clothes: { label: '服饰', emoji: '👕' },
   weather: { label: '天气', emoji: '☀️' },
+  travel: { label: '出行', emoji: '✈️' },
+  study: { label: '学习', emoji: '📚' },
+  hobby: { label: '兴趣', emoji: '🎸' },
+  sports: { label: '运动', emoji: '⚽' },
+  festival: { label: '节日', emoji: '🎉' },
 };
 
 export default function Vocabulary() {
@@ -67,10 +72,10 @@ export default function Vocabulary() {
         </div>
       </div>
 
-      <div className="mb-4 flex flex-wrap gap-2">
+      <div className="mb-4 flex gap-2 overflow-x-auto pb-2">
         <button
           onClick={() => handleCategoryChange('all')}
-          className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+          className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${
             category === 'all'
               ? 'bg-nebula text-white shadow-glow-sm'
               : 'bg-white/60 text-space-900 hover:bg-white'
@@ -82,7 +87,7 @@ export default function Vocabulary() {
           <button
             key={key}
             onClick={() => handleCategoryChange(key)}
-            className={`rounded-full px-4 py-2 text-sm font-semibold transition-all ${
+            className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${
               category === key
                 ? 'bg-mint text-white shadow-glow-sm'
                 : 'bg-white/60 text-space-900 hover:bg-white'
