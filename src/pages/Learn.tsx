@@ -3,6 +3,34 @@ import ModuleCard from '@/components/ModuleCard';
 
 const modules = [
   {
+    icon: '🔤',
+    title: '拼读体系',
+    desc: '第一阶段自然拼读，见词能读听音能拼',
+    to: '/learn/phonics',
+    color: 'bg-gradient-to-br from-mint/30 to-mint/10',
+  },
+  {
+    icon: '📖',
+    title: '词汇积累',
+    desc: '第一阶段八大场景基础词汇与记忆方法',
+    to: '/learn/vocabulary-foundation',
+    color: 'bg-gradient-to-br from-nebula/30 to-nebula/10',
+  },
+  {
+    icon: '✏️',
+    title: '语法句型',
+    desc: '第一阶段零基础语法全覆盖',
+    to: '/learn/grammar-foundation',
+    color: 'bg-gradient-to-br from-ocean/30 to-ocean/10',
+  },
+  {
+    icon: '📣',
+    title: '听说读写训练',
+    desc: '第一阶段课堂指令、情景对话、规范书写与句子输出',
+    to: '/learn/skills-foundation',
+    color: 'bg-gradient-to-br from-mint/30 to-mint/10',
+  },
+  {
     icon: '📚',
     title: '单词记忆',
     desc: '翻转卡片，趣味背单词',
@@ -77,34 +105,6 @@ const modules = [
     title: '高分打磨提升',
     desc: '高分范文背诵、口语发音与临场表达',
     to: '/learn/high-score',
-    color: 'bg-gradient-to-br from-mint/30 to-mint/10',
-  },
-  {
-    icon: '🔤',
-    title: '拼读体系',
-    desc: '第一阶段自然拼读，见词能读听音能拼',
-    to: '/learn/phonics',
-    color: 'bg-gradient-to-br from-mint/30 to-mint/10',
-  },
-  {
-    icon: '📖',
-    title: '词汇积累',
-    desc: '第一阶段八大场景基础词汇与记忆方法',
-    to: '/learn/vocabulary-foundation',
-    color: 'bg-gradient-to-br from-nebula/30 to-nebula/10',
-  },
-  {
-    icon: '✏️',
-    title: '语法句型',
-    desc: '第一阶段零基础语法全覆盖',
-    to: '/learn/grammar-foundation',
-    color: 'bg-gradient-to-br from-ocean/30 to-ocean/10',
-  },
-  {
-    icon: '📣',
-    title: '听说读写训练',
-    desc: '第一阶段课堂指令、情景对话、规范书写与句子输出',
-    to: '/learn/skills-foundation',
     color: 'bg-gradient-to-br from-mint/30 to-mint/10',
   },
 ];
