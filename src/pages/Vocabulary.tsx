@@ -7,6 +7,7 @@ import { words } from '@/data/words';
 import { useProgressStore } from '@/stores/progressStore';
 import PhaseSelector from '@/components/PhaseSelector';
 import { getLevelsByPhase, type WordCategory } from '@/types';
+import Empty from '@/components/Empty';
 
 const categoryLabels: Record<WordCategory, { label: string; emoji: string }> = {
   school: { label: '校园', emoji: '🏫' },
@@ -30,14 +31,25 @@ export default function Vocabulary() {
   const [category, setCategory] = useState<WordCategory | 'all'>('all');
   const progress = useProgressStore();
 
+  const phaseLevels = useMemo(() => getLevelsByPhase(progress.currentPhase), [progress.currentPhase]);
+
+  const availableCategories = useMemo(() => {
+    const set = new Set<WordCategory>();
+    for (const w of words) {
+      if (phaseLevels.includes(w.level)) {
+        set.add(w.category);
+      }
+    }
+    return (Object.keys(categoryLabels) as WordCategory[]).filter((key) => set.has(key));
+  }, [phaseLevels]);
+
   const pool = useMemo(() => {
-    const phaseLevels = getLevelsByPhase(progress.currentPhase);
     let filtered = words.filter((w) => phaseLevels.includes(w.level));
     if (category !== 'all') {
       filtered = filtered.filter((w) => w.category === category);
     }
     return filtered;
-  }, [category, progress.currentPhase]);
+  }, [category, phaseLevels]);
 
   const shuffled = useMemo(() => [...pool].sort(() => Math.random() - 0.5), [pool]);
   const current = shuffled[index];
@@ -65,6 +77,7 @@ export default function Vocabulary() {
   };
 
   useEffect(() => {
+    setCategory('all');
     setIndex(0);
   }, [progress.currentPhase]);
 
@@ -95,7 +108,7 @@ export default function Vocabulary() {
         >
           全部
         </button>
-        {(Object.keys(categoryLabels) as WordCategory[]).map((key) => (
+        {availableCategories.map((key) => (
           <button
             key={key}
             onClick={() => handleCategoryChange(key)}
@@ -110,21 +123,27 @@ export default function Vocabulary() {
         ))}
       </div>
 
-      <div className="mb-6 h-3 w-full overflow-hidden rounded-full bg-space-900/5">
-        <div
-          className="h-full rounded-full bg-mint transition-all duration-500"
-          style={{ width: `${((index + 1) / shuffled.length) * 100}%` }}
-        />
-      </div>
+      {shuffled.length === 0 ? (
+        <Empty title="该分类下暂无单词" description="当前阶段没有相关词汇，请切换分类或阶段" />
+      ) : (
+        <>
+          <div className="mb-6 h-3 w-full overflow-hidden rounded-full bg-space-900/5">
+            <div
+              className="h-full rounded-full bg-mint transition-all duration-500"
+              style={{ width: `${((index + 1) / shuffled.length) * 100}%` }}
+            />
+          </div>
 
-      <FlipCard word={current} onMaster={handleMaster} onWeak={handleWeak} />
+          <FlipCard word={current} onMaster={handleMaster} onWeak={handleWeak} />
 
-      <button
-        onClick={restart}
-        className="mx-auto mt-8 flex items-center gap-2 rounded-full bg-white/60 px-5 py-2 text-sm font-semibold text-space-900 transition-colors hover:bg-white"
-      >
-        <RotateCcw size={16} /> 重新洗牌
-      </button>
+          <button
+            onClick={restart}
+            className="mx-auto mt-8 flex items-center gap-2 rounded-full bg-white/60 px-5 py-2 text-sm font-semibold text-space-900 transition-colors hover:bg-white"
+          >
+            <RotateCcw size={16} /> 重新洗牌
+          </button>
+        </>
+      )}
     </Layout>
   );
 }
