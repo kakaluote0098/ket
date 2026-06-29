@@ -38,6 +38,13 @@ const modules = [
     color: 'bg-gradient-to-br from-mint/30 to-mint/10',
   },
   {
+    icon: '🧩',
+    title: '单词测验',
+    desc: '按分类拼写单词，答错自动加入弱词',
+    to: '/learn/word-quiz',
+    color: 'bg-gradient-to-br from-nebula/30 to-nebula/10',
+  },
+  {
     icon: '✏️',
     title: '语法练习',
     desc: '选择题闯关，即时反馈',

@@ -18,6 +18,7 @@ import GrammarFoundation from '@/pages/GrammarFoundation';
 import SkillsFoundation from '@/pages/SkillsFoundation';
 import JuniorEnglish from '@/pages/JuniorEnglish';
 import Practice from '@/pages/Practice';
+import WordQuiz from '@/pages/WordQuiz';
 import Progress from '@/pages/Progress';
 import MyPath from '@/pages/MyPath';
 import UnitDetail from '@/pages/UnitDetail';
@@ -46,6 +47,7 @@ export default function App() {
         <Route path="/learn/skills-foundation" element={<SkillsFoundation />} />
         <Route path="/junior-english" element={<JuniorEnglish />} />
         <Route path="/learn/practice" element={<Practice />} />
+        <Route path="/learn/word-quiz" element={<WordQuiz />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/path" element={<MyPath />} />
       </Routes>
