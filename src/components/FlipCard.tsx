@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Volume2, RotateCcw, Check, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { speak } from '@/lib/speech';
+import { getPhonetic } from '@/lib/phonetics';
 import SpeakButton from '@/components/SpeakButton';
 import type { Word } from '@/types';
 
@@ -15,6 +16,8 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
   const [flipped, setFlipped] = useState(false);
 
   const handleSpeak = () => speak(word.english);
+  const phonetic = getPhonetic(word);
+  const isFallbackPhonetic = !word.phonetic && !phonetic.startsWith('/');
 
   return (
     <div className="mx-auto w-full max-w-md">
@@ -22,6 +25,13 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
         <div className="flip-card-inner relative h-full w-full">
           <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] bg-gradient-to-br from-nebula to-ocean p-8 text-center text-white shadow-glow">
             <span className="mb-2 text-5xl font-bold">{word.english}</span>
+            <span
+              className="mb-1 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-lg font-medium backdrop-blur-sm"
+              title={isFallbackPhonetic ? '按音节拼读提示' : '音标'}
+            >
+              {phonetic}
+              {isFallbackPhonetic && <span className="text-xs opacity-80">拼读</span>}
+            </span>
             <span className="mb-4 text-2xl font-medium opacity-90">{word.chinese}</span>
             <button
               onClick={(e) => {

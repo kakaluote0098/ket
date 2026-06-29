@@ -34,6 +34,7 @@ export interface Word {
   example: string;
   category: WordCategory;
   level: Level;
+  phonetic?: string;
   partOfSpeech?: string;
   collocation?: string;
   phrase?: string;
