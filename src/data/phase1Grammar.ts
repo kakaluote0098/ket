@@ -8,6 +8,7 @@ export interface GrammarFoundationLesson {
   commonMistakes: { mistake: string; correction: string; reason: string }[];
   practice: { question: string; answer: string; explanation: string }[];
   tips: string[];
+  videoUrl?: string;
 }
 
 // 第一阶段 语法句型（零基础全覆盖，4 课时）
@@ -50,7 +51,8 @@ export const phase1GrammarLessons: GrammarFoundationLesson[] = [
     id: 'g1_nouns',
     title: '名词单复数与可数/不可数',
     icon: '📦',
-    content: '名词表示人、事物、地点或概念。英语名词有单数和复数形式，也有可数与不可数之分。',
+    content: '名词表示人、事物、地点或概念。英语名词有单数和复数形式：单数表示“一个”，复数表示“两个及以上”。可数名词能直接数，如 one apple, two apples；不可数名词不能直接数，通常没有复数，如 water, milk, rice。',
+    videoUrl: 'https://youtu.be/f5VZYFJCpFc',
     keyPoints: [
       '可数名词：可以数出数量的名词，有单数和复数形式。如 one book, two books。',
       '不可数名词：不能直接数数量的名词，通常没有复数形式。如 water, milk, rice。',

@@ -1,5 +1,6 @@
 import { BookOpen, Lightbulb } from 'lucide-react';
 import SpeakButton from '@/components/SpeakButton';
+import VideoPlayer from '@/components/VideoPlayer';
 import type { GrammarLesson } from '@/types';
 
 interface GrammarLessonCardProps {
@@ -23,6 +24,12 @@ export default function GrammarLessonCard({ lesson, index, color = '#118AB2' }: 
           <p className="mt-2 leading-relaxed text-space-900/80">{lesson.content}</p>
         </div>
       </div>
+
+      {lesson.videoUrl && (
+        <div className="border-t border-space-900/5 bg-space-900/[0.02] px-5 py-4">
+          <VideoPlayer url={lesson.videoUrl} title={`${lesson.title} 视频讲解`} />
+        </div>
+      )}
 
       <div className="border-t border-space-900/5 bg-space-900/[0.02] px-5 py-4">
         <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-space-900/60">

@@ -24,9 +24,10 @@ export const grammarLessons: GrammarLesson[] = [
   {
     id: 'gl_noun_plural',
     title: '名词单复数',
-    content: '大多数名词变复数加 -s；以 s, x, ch, sh 结尾加 -es；以辅音字母 + y 结尾变 y 为 i 加 -es；部分名词不规则变化。',
+    content: '名词单数表示“一个”人、事物或动物；名词复数表示“两个及以上”。当我们数东西的数量大于一时，就要用复数形式。一般情况下直接加 -s；以 s, x, ch, sh 结尾加 -es；以辅音字母 + y 结尾变 y 为 i 加 -es；部分名词不规则变化，需要特别记忆。',
     examples: ['book → books', 'box → boxes', 'watch → watches', 'baby → babies', 'child → children', 'foot → feet'],
     tip: 'sheep, fish 等名词单复数同形。',
+    videoUrl: 'https://youtu.be/f5VZYFJCpFc',
     level: 'starter',
   },
   {
@@ -60,9 +61,10 @@ export const grammarLessons: GrammarLesson[] = [
   {
     id: 'gl_simple_present',
     title: '一般现在时',
-    content: '一般现在时表示经常性、习惯性的动作或状态。主语是第三人称单数时，动词加 -s / -es；其他人称用动词原形。',
+    content: '一般现在时用来描述经常发生、习惯性的动作，或者是永远成立的客观事实。比如每天早上刷牙、太阳从东方升起。当主语是 he / she / it 或单个第三人称时，动词一般要加 -s 或 -es；其他人称用动词原形。',
     examples: ['I go to school at seven.', 'He walks to school.', 'She watches TV every day.', 'They like English.'],
     tip: '否定句和疑问句需要借助 do / does。He likes → He doesn\'t like / Does he like?',
+    videoUrl: 'https://www.youtube.com/watch?v=3j3D3P2GfjE',
     level: 'mover',
   },
   {
@@ -88,17 +90,19 @@ export const grammarLessons: GrammarLesson[] = [
   {
     id: 'gl_present_continuous',
     title: '现在进行时',
-    content: '表示此时此刻正在发生的动作。结构：主语 + am / is / are + 动词 -ing。标志词有 now, look, listen, at the moment。',
+    content: '现在进行时表示说话时正在发生的动作，或者当前一段时间内正在进行的动作。结构是“主语 + am / is / are + 动词 -ing”。当看到 now, look, listen, at the moment 这些词时，通常要用现在进行时。',
     examples: ['I am doing my homework now.', 'Look! The dog is running.', 'They are watching TV at the moment.'],
     tip: '不要与一般现在时混淆：一般现在时表示习惯，现在进行时表示正在进行。',
+    videoUrl: 'https://www.youtube.com/watch?v=0-tku3eRs4I',
     level: 'mover',
   },
   {
     id: 'gl_past_simple',
     title: '一般过去时（肯定句）',
-    content: '表示过去发生的动作或状态。规则动词加 -ed；不规则动词有固定过去式，如 go → went, eat → ate, see → saw。',
+    content: '一般过去时表示过去某个时间发生的动作或存在的状态。规则动词一般在词尾加 -ed；不规则动词有固定过去式，需要特别记忆，如 go → went, eat → ate, see → saw。',
     examples: ['I played football yesterday.', 'She visited her grandma last week.', 'We went to the zoo last Sunday.'],
     tip: 'last week / yesterday / ago 是一般过去时的常见标志。',
+    videoUrl: 'https://www.youtube.com/watch?v=3j3D3P2GfjE',
     level: 'flyer',
   },
   {

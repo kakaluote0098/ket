@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import Layout from '@/components/Layout';
 import SpeakButton from '@/components/SpeakButton';
+import VideoPlayer from '@/components/VideoPlayer';
 import { phase1GrammarLessons } from '@/data/phase1Grammar';
 
 export default function GrammarFoundation() {
@@ -85,6 +86,10 @@ export default function GrammarFoundation() {
               {expanded && (
                 <div className="mt-4 space-y-4 border-t border-space-900/5 pt-4">
                   <p className="text-sm leading-relaxed text-space-900/80">{lesson.content}</p>
+
+                  {lesson.videoUrl && (
+                    <VideoPlayer url={lesson.videoUrl} title={`${lesson.title} 视频讲解`} />
+                  )}
 
                   <div className="rounded-2xl bg-space-900/[0.02] p-4">
                     <p className="mb-2 text-xs font-semibold text-space-900/50">核心知识点</p>

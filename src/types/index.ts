@@ -57,6 +57,7 @@ export interface GrammarLesson {
   content: string;
   examples: string[];
   tip?: string;
+  videoUrl?: string;
   level: Level;
 }
 
