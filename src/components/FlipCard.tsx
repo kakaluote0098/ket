@@ -24,6 +24,7 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
         <div className="flip-card-inner relative h-full w-full">
           <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] bg-gradient-to-br from-nebula to-ocean p-8 text-center text-white shadow-glow">
             <span className="mb-2 text-5xl font-bold">{word.english}</span>
+            <span className="mb-4 text-2xl font-medium opacity-90">{word.chinese}</span>
             <span
               className="font-phonetic mb-2 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-lg font-medium backdrop-blur-sm"
               title="音标"
@@ -43,8 +44,6 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
                 </div>
               ))}
             </div>
-
-            <span className="mb-4 text-2xl font-medium opacity-90">{word.chinese}</span>
             <button
               onClick={(e) => {
                 e.stopPropagation();
@@ -58,7 +57,13 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
           </div>
           <div className="flip-card-back absolute inset-0 flex flex-col items-center rounded-[2rem] bg-white p-6 text-center text-space-900 shadow-glow">
             <div className="flex w-full flex-1 flex-col items-center justify-center overflow-y-auto">
-              <p className="text-3xl font-bold text-nebula">{word.chinese}</p>
+              <p className="flex items-center justify-center gap-2 text-4xl font-bold text-nebula">
+                {word.english}
+                <span onClick={(e) => e.stopPropagation()}>
+                  <SpeakButton text={word.english} size={18} />
+                </span>
+              </p>
+              <p className="mt-2 text-2xl font-medium text-space-900/80">{word.chinese}</p>
               {word.partOfSpeech && (
                 <span className="mt-2 rounded-full bg-ocean/10 px-3 py-1 text-xs font-semibold text-ocean">
                   {word.partOfSpeech}
