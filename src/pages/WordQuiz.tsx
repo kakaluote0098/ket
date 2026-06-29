@@ -184,7 +184,7 @@ export default function WordQuiz() {
                       feedback !== 'idle' && idx < answer.length && feedback === 'wrong' && 'bg-coral text-white'
                     )}
                   >
-                    {answer[idx]?.toUpperCase()}
+                    {answer[idx]}
                   </button>
                 ))}
               </div>
@@ -215,7 +215,7 @@ export default function WordQuiz() {
                       onClick={() => handleLetterClick(letter)}
                       className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-xl font-bold text-space-900 shadow-sm transition-all hover:bg-nebula hover:text-white active:scale-95"
                     >
-                      {letter.toUpperCase()}
+                      {letter}
                     </button>
                   ))}
                 </div>
