@@ -25,7 +25,7 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
           <div className="flip-card-front absolute inset-0 flex flex-col items-center justify-center rounded-[2rem] bg-gradient-to-br from-nebula to-ocean p-8 text-center text-white shadow-glow">
             <span className="mb-2 text-5xl font-bold">{word.english}</span>
             <span
-              className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-lg font-medium backdrop-blur-sm"
+              className="font-phonetic mb-2 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-lg font-medium backdrop-blur-sm"
               title="音标"
             >
               {breakdown.combined}
@@ -39,7 +39,7 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
                   className="flex flex-col items-center rounded-xl bg-white/10 px-2 py-1 backdrop-blur-sm"
                 >
                   <span className="text-sm font-bold leading-none">{chunk.text}</span>
-                  <span className="text-xs font-medium opacity-90">{chunk.sound}</span>
+                  <span className="font-phonetic text-xs font-medium opacity-90">{chunk.sound}</span>
                 </div>
               ))}
             </div>

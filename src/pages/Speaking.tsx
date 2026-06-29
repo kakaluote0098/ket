@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Layout from '@/components/Layout';
 import SpeakingCard from '@/components/SpeakingCard';
+import Empty from '@/components/Empty';
 import { words } from '@/data/words';
 import { useProgressStore } from '@/stores/progressStore';
 import PhaseSelector from '@/components/PhaseSelector';
@@ -46,13 +47,19 @@ export default function Speaking() {
 
       <PhaseSelector />
 
-      <SpeakingCard key={index} sentence={sentences[index]} onComplete={handleComplete} />
+      {sentences.length === 0 ? (
+        <Empty title="当前阶段暂无例句" description="请先完成前置阶段学习，或切换到有例句的阶段再来跟读。" />
+      ) : (
+        <>
+          <SpeakingCard key={index} sentence={sentences[index]} onComplete={handleComplete} />
 
-      <div className="mt-10 flex justify-center">
-        <button onClick={next} className="btn-primary">
-          下一句 <ArrowRight size={18} />
-        </button>
-      </div>
+          <div className="mt-10 flex justify-center">
+            <button onClick={next} className="btn-primary">
+              下一句 <ArrowRight size={18} />
+            </button>
+          </div>
+        </>
+      )}
     </Layout>
   );
 }

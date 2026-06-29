@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Trophy } from 'lucide-react';
 import Layout from '@/components/Layout';
 import GrammarQuiz from '@/components/GrammarQuiz';
+import Empty from '@/components/Empty';
 import { grammarQuestions } from '@/data/grammar';
 import { useProgressStore } from '@/stores/progressStore';
 import PhaseSelector from '@/components/PhaseSelector';
@@ -64,7 +65,12 @@ export default function Grammar() {
 
       <PhaseSelector />
 
-      {!finished ? (
+      {questions.length === 0 ? (
+        <Empty
+          title="当前阶段暂无语法题"
+          description="请先完成前置阶段学习，或切换到有语法题的阶段再来练习。"
+        />
+      ) : !finished ? (
         <>
           <div className="mb-6 h-3 w-full overflow-hidden rounded-full bg-space-900/5">
             <div

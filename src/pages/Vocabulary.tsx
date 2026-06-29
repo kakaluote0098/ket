@@ -77,9 +77,15 @@ export default function Vocabulary() {
   };
 
   useEffect(() => {
-    setCategory('all');
+    const nextCategories = new Set<WordCategory>();
+    for (const w of words) {
+      if (phaseLevels.includes(w.level)) {
+        nextCategories.add(w.category);
+      }
+    }
+    setCategory((prev) => (prev !== 'all' && nextCategories.has(prev) ? prev : 'all'));
     setIndex(0);
-  }, [progress.currentPhase]);
+  }, [progress.currentPhase, phaseLevels]);
 
   return (
     <Layout>

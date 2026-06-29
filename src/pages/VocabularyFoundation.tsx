@@ -120,7 +120,7 @@ export default function VocabularyFoundation() {
                           <Volume2 size={16} />
                         </button>
                       </div>
-                      <p className="mb-1 text-sm text-nebula">{word.phonetic}</p>
+                      <p className="font-phonetic mb-1 text-sm text-nebula">{word.phonetic}</p>
                       <p className="mb-2 text-sm font-medium text-space-900/80">{word.chinese}</p>
                       <p className="flex items-start gap-1 text-xs text-space-900/60">
                         {word.example}

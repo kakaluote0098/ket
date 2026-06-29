@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Trophy } from 'lucide-react';
 import Layout from '@/components/Layout';
 import ListeningCard from '@/components/ListeningCard';
+import Empty from '@/components/Empty';
 import { listeningQuestions } from '@/data/listening';
 import { useProgressStore } from '@/stores/progressStore';
 import PhaseSelector from '@/components/PhaseSelector';
@@ -64,7 +65,12 @@ export default function Listening() {
 
       <PhaseSelector />
 
-      {!finished ? (
+      {questions.length === 0 ? (
+        <Empty
+          title="当前阶段暂无听力题"
+          description="请先完成前置阶段学习，或切换到有听力题的阶段再来训练。"
+        />
+      ) : !finished ? (
         <>
           <div className="mb-6 h-3 w-full overflow-hidden rounded-full bg-space-900/5">
             <div
