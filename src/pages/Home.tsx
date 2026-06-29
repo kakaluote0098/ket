@@ -21,8 +21,8 @@ export default function Home() {
     {
       icon: '📚',
       title: '复习弱词',
-      desc: weakWord ? `加强记忆：${weakWord.english}` : '巩固已学单词',
-      to: '/learn/vocabulary',
+      desc: weakWord ? `加强记忆：${weakWord.english}` : '暂无弱词，去背单词',
+      to: progress.weakWords.length > 0 ? '/learn/vocabulary?mode=weak' : '/learn/vocabulary',
       color: 'bg-coral',
       progress: Math.min(100, (progress.masteredWords.length / progress.dailyGoalWords) * 100),
     },

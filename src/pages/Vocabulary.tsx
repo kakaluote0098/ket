@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, RotateCcw } from 'lucide-react';
 import Layout from '@/components/Layout';
 import FlipCard from '@/components/FlipCard';
@@ -29,8 +29,10 @@ const categoryLabels: Record<WordCategory, { label: string; emoji: string }> = {
 export default function Vocabulary() {
   const [index, setIndex] = useState(0);
   const [category, setCategory] = useState<WordCategory | 'all'>('all');
+  const [searchParams] = useSearchParams();
   const progress = useProgressStore();
 
+  const weakMode = searchParams.get('mode') === 'weak';
   const phaseLevels = useMemo(() => getLevelsByPhase(progress.currentPhase), [progress.currentPhase]);
 
   const availableCategories = useMemo(() => {
@@ -44,12 +46,15 @@ export default function Vocabulary() {
   }, [phaseLevels]);
 
   const pool = useMemo(() => {
+    if (weakMode) {
+      return words.filter((w) => progress.weakWords.includes(w.id));
+    }
     let filtered = words.filter((w) => phaseLevels.includes(w.level));
     if (category !== 'all') {
       filtered = filtered.filter((w) => w.category === category);
     }
     return filtered;
-  }, [category, phaseLevels]);
+  }, [category, phaseLevels, progress.weakWords, weakMode]);
 
   const shuffled = useMemo(() => [...pool].sort(() => Math.random() - 0.5), [pool]);
   const current = shuffled[index];
@@ -66,7 +71,10 @@ export default function Vocabulary() {
   };
 
   const nextCard = () => {
-    setIndex((prev) => (prev + 1) % shuffled.length);
+    setIndex((prev) => {
+      const next = prev + 1;
+      return next >= shuffled.length ? 0 : next;
+    });
   };
 
   const restart = () => setIndex(0);
@@ -87,6 +95,13 @@ export default function Vocabulary() {
     setIndex(0);
   }, [progress.currentPhase, phaseLevels]);
 
+  // Guard against pool shrinking while index is pointing to a removed item.
+  useEffect(() => {
+    if (shuffled.length > 0 && index >= shuffled.length) {
+      setIndex(0);
+    }
+  }, [shuffled.length, index]);
+
   return (
     <Layout>
       <div className="mb-6 flex items-center gap-3">
@@ -96,14 +111,21 @@ export default function Vocabulary() {
         <div>
           <h1 className="text-2xl font-bold text-space-900">单词记忆</h1>
           <p className="text-sm text-space-900/60">
-            {index + 1} / {shuffled.length}
+            {shuffled.length > 0 ? `${index + 1} / ${shuffled.length}` : '0 / 0'}
           </p>
         </div>
       </div>
 
       <PhaseSelector />
 
-      <div className="mb-4 mt-4 flex gap-2 overflow-x-auto pb-2">
+      {weakMode && progress.weakWords.length > 0 && (
+        <div className="mb-4 mt-4 rounded-2xl bg-coral/10 p-3 text-center text-sm font-semibold text-coral">
+          正在复习你的薄弱词汇（{progress.weakWords.length} 个）
+        </div>
+      )}
+
+      {!weakMode && (
+        <div className="mb-4 mt-4 flex gap-2 overflow-x-auto pb-2">
         <button
           onClick={() => handleCategoryChange('all')}
           className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${
@@ -128,9 +150,14 @@ export default function Vocabulary() {
           </button>
         ))}
       </div>
+      )}
 
-      {shuffled.length === 0 ? (
-        <Empty title="该分类下暂无单词" description="当前阶段没有相关词汇，请切换分类或阶段" />
+      {shuffled.length === 0 || !current ? (
+        weakMode ? (
+          <Empty title="暂无薄弱词汇" description="你还没有标记过需要加强的单词，先去学习和标记弱词吧。" />
+        ) : (
+          <Empty title="该分类下暂无单词" description="当前阶段没有相关词汇，请切换分类或阶段" />
+        )
       ) : (
         <>
           <div className="mb-6 h-3 w-full overflow-hidden rounded-full bg-space-900/5">
