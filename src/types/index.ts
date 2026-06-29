@@ -32,6 +32,7 @@ export interface Word {
   english: string;
   chinese: string;
   example: string;
+  exampleTranslation?: string;
   category: WordCategory;
   level: Level;
   phonetic?: string;

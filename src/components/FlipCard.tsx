@@ -73,6 +73,9 @@ export default function FlipCard({ word, onMaster, onWeak }: FlipCardProps) {
                 "{word.example}"
                 <SpeakButton text={word.example} size={16} />
               </p>
+              {word.exampleTranslation && (
+                <p className="mt-1 text-base text-space-900/60">{word.exampleTranslation}</p>
+              )}
 
               <div className="mt-4 w-full space-y-2 text-left text-sm">
                 {word.collocation && (
