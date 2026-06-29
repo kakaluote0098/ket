@@ -7,6 +7,7 @@ import { useProgressStore } from '@/stores/progressStore';
 import PhaseSelector from '@/components/PhaseSelector';
 import { speak } from '@/lib/speech';
 import SpeakButton from '@/components/SpeakButton';
+import Empty from '@/components/Empty';
 import { getLevelsByPhase } from '@/types';
 import type { PracticeCategory, PracticeExercise } from '@/types';
 
@@ -234,28 +235,32 @@ export default function Practice() {
       </div>
 
       {/* Exercises */}
-      <div className="space-y-5">
-        {exercises.map((exercise, idx) => (
-          <div key={exercise.id} className="card">
-            <div className="mb-4 flex items-start gap-3">
-              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-sm ${category.dot}`}>
-                {idx + 1}
-              </div>
-              <div>
-                <div className="mb-1 inline-flex items-center gap-2 rounded-full bg-space-900/5 px-3 py-1 text-xs font-semibold text-space-900/70">
-                  {exercise.subType}
+      {exercises.length === 0 ? (
+        <Empty title="该专项暂无训练题" description="当前阶段还没有相关练习，请切换阶段或其他专项" />
+      ) : (
+        <div className="space-y-5">
+          {exercises.map((exercise, idx) => (
+            <div key={exercise.id} className="card">
+              <div className="mb-4 flex items-start gap-3">
+                <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-white shadow-sm ${category.dot}`}>
+                  {idx + 1}
                 </div>
-                <h3 className="font-display text-lg font-bold text-space-900">{exercise.title}</h3>
+                <div>
+                  <div className="mb-1 inline-flex items-center gap-2 rounded-full bg-space-900/5 px-3 py-1 text-xs font-semibold text-space-900/70">
+                    {exercise.subType}
+                  </div>
+                  <h3 className="font-display text-lg font-bold text-space-900">{exercise.title}</h3>
+                </div>
               </div>
+              <p className="mb-5 leading-relaxed text-space-900/80">{exercise.content}</p>
+              {activeCategory === 'listening' && <ListeningCard exercise={exercise} />}
+              {activeCategory === 'reading' && <ReadingCard exercise={exercise} />}
+              {activeCategory === 'writing' && <WritingCard exercise={exercise} />}
+              {activeCategory === 'speaking' && <SpeakingCard exercise={exercise} />}
             </div>
-            <p className="mb-5 leading-relaxed text-space-900/80">{exercise.content}</p>
-            {activeCategory === 'listening' && <ListeningCard exercise={exercise} />}
-            {activeCategory === 'reading' && <ReadingCard exercise={exercise} />}
-            {activeCategory === 'writing' && <WritingCard exercise={exercise} />}
-            {activeCategory === 'speaking' && <SpeakingCard exercise={exercise} />}
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       <div className="mt-8 flex justify-center">
         <Link to="/learn" className="btn-primary">
