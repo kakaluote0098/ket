@@ -15,19 +15,19 @@ export default function ModuleCard({ icon, title, desc, to, color }: ModuleCardP
     <Link
       to={to}
       className={cn(
-        'group card flex flex-col items-center gap-4 text-center text-space-900 transition-all hover:-translate-y-1 hover:shadow-glow',
+        'group card flex flex-col items-center gap-6 p-8 text-center text-space-900 transition-all hover:-translate-y-1 hover:bg-white/95 hover:shadow-glow active:scale-95',
         color
       )}
     >
-      <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/90 text-3xl shadow-soft">
+      <div className="flex h-24 w-24 items-center justify-center rounded-[1.75rem] bg-white/95 text-5xl shadow-soft transition-transform group-hover:scale-110">
         {icon}
       </div>
       <div>
-        <h3 className="font-display text-xl font-bold">{title}</h3>
-        <p className="mt-1 text-sm opacity-80">{desc}</p>
+        <h3 className="font-display text-3xl font-bold">{title}</h3>
+        <p className="mt-2 text-lg leading-snug opacity-80">{desc}</p>
       </div>
-      <span className="mt-2 inline-flex items-center gap-1 rounded-full bg-white/60 px-4 py-1.5 text-sm font-semibold">
-        开始练习 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+      <span className="mt-2 inline-flex min-h-[3rem] items-center gap-2 rounded-full bg-white/80 px-6 py-2.5 text-lg font-bold shadow-sm transition-all group-hover:bg-white group-hover:text-nebula">
+        开始练习 <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
       </span>
     </Link>
   );

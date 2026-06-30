@@ -116,19 +116,34 @@ const modules = [
   },
 ];
 
+const coreModules = modules.slice(0, 4);
+const moreModules = modules.slice(4);
+
 export default function Learn() {
   return (
     <Layout>
-      <div className="mb-8 text-center">
-        <h1 className="text-3xl font-bold text-space-900">学习模块</h1>
-        <p className="text-space-900/60">选择一项训练，开启今天的探险</p>
+      <div className="mb-10 text-center">
+        <h1 className="text-4xl font-bold text-space-900">学习模块</h1>
+        <p className="mt-2 text-lg text-space-900/60">选择一项训练，开启今天的探险</p>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        {modules.map((module) => (
-          <ModuleCard key={module.title} {...module} />
-        ))}
-      </div>
+      <section className="mb-10">
+        <h2 className="section-title">🌟 重点学习</h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {coreModules.map((module) => (
+            <ModuleCard key={module.title} {...module} />
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h2 className="section-title">🚀 更多训练</h2>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {moreModules.map((module) => (
+            <ModuleCard key={module.title} {...module} />
+          ))}
+        </div>
+      </section>
     </Layout>
   );
 }

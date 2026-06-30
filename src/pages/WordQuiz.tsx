@@ -122,12 +122,12 @@ export default function WordQuiz() {
   return (
     <Layout>
       <div className="mb-6 flex items-center gap-3">
-        <Link to="/learn" className="rounded-full bg-white/60 p-2 text-space-900 transition-colors hover:bg-white">
-          <ArrowLeft size={22} />
+        <Link to="/learn" className="rounded-full bg-white/60 p-3 text-space-900 transition-colors hover:bg-white">
+          <ArrowLeft size={24} />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-space-900">单词测验</h1>
-          <p className="text-sm text-space-900/60">
+          <h1 className="text-3xl font-bold text-space-900">单词测验</h1>
+          <p className="text-base text-space-900/60">
             {category ? `测验 ${categoryLabels[category].label} · ${index + 1} / ${shuffled.length}` : '选择一类单词开始测验'}
           </p>
         </div>
@@ -136,15 +136,15 @@ export default function WordQuiz() {
       <PhaseSelector />
 
       {!category ? (
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {availableCategories.map((key) => (
             <button
               key={key}
               onClick={() => setCategory(key)}
-              className="card flex flex-col items-center gap-2 p-6 text-center transition-all hover:bg-white"
+              className="card flex flex-col items-center gap-4 p-8 text-center transition-all hover:-translate-y-1 hover:bg-white hover:shadow-glow active:scale-95"
             >
-              <span className="text-4xl">{categoryLabels[key].emoji}</span>
-              <span className="font-display text-lg font-bold text-space-900">测验{categoryLabels[key].label}</span>
+              <span className="text-6xl">{categoryLabels[key].emoji}</span>
+              <span className="font-display text-2xl font-bold text-space-900">测验{categoryLabels[key].label}</span>
             </button>
           ))}
         </div>
@@ -152,32 +152,40 @@ export default function WordQuiz() {
         <Empty title="当前分类暂无单词" description="请切换阶段或选择其他分类" />
       ) : (
         <>
-          <div className="mb-4 flex justify-center">
+          <div className="mb-6 flex justify-center">
             <button
               onClick={() => setCategory(null)}
-              className="rounded-full bg-white/60 px-4 py-2 text-sm font-semibold text-space-900 transition-colors hover:bg-white"
+              className="min-h-[3rem] rounded-full bg-white/60 px-5 py-2.5 text-base font-bold text-space-900 transition-colors hover:bg-white"
             >
               重新选择分类
             </button>
           </div>
 
-          <div className="mx-auto w-full max-w-md">
-            <div className="card flex flex-col items-center gap-6 p-6 text-center">
+          <div className="mx-auto w-full max-w-lg">
+            <div className="card flex flex-col items-center gap-6 p-8 text-center">
+              {/* Progress */}
+              <div className="h-3 w-full overflow-hidden rounded-full bg-space-900/5">
+                <div
+                  className="h-full rounded-full bg-nebula transition-all duration-500"
+                  style={{ width: `${((index + 1) / shuffled.length) * 100}%` }}
+                />
+              </div>
+
               {/* Chinese meaning */}
               <div>
-                <p className="text-sm text-space-900/50">根据汉语意思拼出单词</p>
-                <p className="mt-1 text-4xl font-bold text-space-900">{current.chinese}</p>
+                <p className="text-base font-bold text-space-900/50">根据汉语意思拼出单词</p>
+                <p className="mt-2 text-5xl font-bold text-nebula">{current.chinese}</p>
               </div>
 
               {/* Current answer slots */}
-              <div className="flex min-h-[3.5rem] flex-wrap items-center justify-center gap-2">
+              <div className="flex min-h-[4rem] flex-wrap items-center justify-center gap-2">
                 {current.english.split('').map((_, idx) => (
                   <button
                     key={idx}
                     onClick={handleUndo}
                     disabled={idx >= answer.length || feedback !== 'idle'}
                     className={cn(
-                      'flex h-12 w-12 items-center justify-center rounded-xl text-xl font-bold transition-all',
+                      'flex h-14 w-14 items-center justify-center rounded-2xl text-2xl font-bold transition-all',
                       idx < answer.length
                         ? 'bg-nebula text-white shadow-glow-sm'
                         : 'border-2 border-dashed border-space-900/10 bg-space-900/[0.02] text-space-900/20',
@@ -191,16 +199,16 @@ export default function WordQuiz() {
 
               {/* Feedback */}
               {feedback === 'correct' && (
-                <div className="flex items-center gap-2 rounded-full bg-mint/10 px-4 py-2 text-mint">
-                  <Check size={20} /> 回答正确！
+                <div className="flex items-center gap-2 rounded-full bg-mint/10 px-5 py-2.5 text-lg font-bold text-mint">
+                  <Check size={24} /> 回答正确！
                 </div>
               )}
               {feedback === 'wrong' && (
-                <div className="flex flex-col items-center gap-1 rounded-2xl bg-coral/10 px-4 py-3 text-coral">
-                  <div className="flex items-center gap-2 font-semibold">
-                    <X size={20} /> 回答错误
+                <div className="flex flex-col items-center gap-1 rounded-2xl bg-coral/10 px-5 py-4 text-coral">
+                  <div className="flex items-center gap-2 text-lg font-bold">
+                    <X size={24} /> 回答错误
                   </div>
-                  <p className="text-sm text-space-900/70">
+                  <p className="text-base text-space-900/70">
                     正确答案是 <span className="font-bold text-space-900">{current.english}</span>，已加入复习弱词。
                   </p>
                 </div>
@@ -213,7 +221,7 @@ export default function WordQuiz() {
                     <button
                       key={`${letter}-${idx}`}
                       onClick={() => handleLetterClick(letter)}
-                      className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-xl font-bold text-space-900 shadow-sm transition-all hover:bg-nebula hover:text-white active:scale-95"
+                      className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-2xl font-bold text-space-900 shadow-sm transition-all hover:bg-nebula hover:text-white active:scale-95"
                     >
                       {letter}
                     </button>
@@ -223,9 +231,9 @@ export default function WordQuiz() {
 
               <button
                 onClick={handleReset}
-                className="flex items-center gap-2 text-sm font-semibold text-space-900/50 hover:text-nebula"
+                className="flex min-h-[2.75rem] items-center gap-2 rounded-full bg-white/60 px-4 py-2 text-base font-bold text-space-900/60 transition-colors hover:bg-white hover:text-nebula"
               >
-                <RefreshCcw size={14} /> 重置本词
+                <RefreshCcw size={18} /> 重置本词
               </button>
             </div>
           </div>

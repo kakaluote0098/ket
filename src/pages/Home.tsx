@@ -84,26 +84,26 @@ export default function Home() {
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">
-        <Link to="/courses" className="card group flex items-center justify-between bg-gradient-to-r from-mint/20 to-mint/5">
+        <Link to="/courses" className="card group flex items-center justify-between bg-gradient-to-r from-mint/20 to-mint/5 p-6">
           <div>
-            <h3 className="font-display text-xl font-bold">分级课程</h3>
-            <p className="text-sm text-space-900/60">从 Starter 到 KET 预备，循序渐进</p>
+            <h3 className="font-display text-2xl font-bold">分级课程</h3>
+            <p className="mt-1 text-base text-space-900/60">从 Starter 到 KET 预备，循序渐进</p>
           </div>
-          <span className="text-3xl transition-transform group-hover:scale-110">🪐</span>
+          <span className="text-4xl transition-transform group-hover:scale-110">🪐</span>
         </Link>
-        <Link to="/junior-english" className="card group flex items-center justify-between bg-gradient-to-r from-nebula/20 to-nebula/5">
+        <Link to="/junior-english" className="card group flex items-center justify-between bg-gradient-to-r from-nebula/20 to-nebula/5 p-6">
           <div>
-            <h3 className="font-display text-xl font-bold">六年级英语</h3>
-            <p className="text-sm text-space-900/60">初一至初三人教版词汇 · 场景分类 · 美式发音</p>
+            <h3 className="font-display text-2xl font-bold">六年级英语</h3>
+            <p className="mt-1 text-base text-space-900/60">初一至初三人教版词汇 · 场景分类 · 美式发音</p>
           </div>
-          <span className="text-3xl transition-transform group-hover:scale-110">🎒</span>
+          <span className="text-4xl transition-transform group-hover:scale-110">🎒</span>
         </Link>
-        <Link to="/progress" className="card group flex items-center justify-between bg-gradient-to-r from-star/20 to-star/5">
+        <Link to="/progress" className="card group flex items-center justify-between bg-gradient-to-r from-star/20 to-star/5 p-6">
           <div>
-            <h3 className="font-display text-xl font-bold">学习进度</h3>
-            <p className="text-sm text-space-900/60">查看能力雷达图与成就徽章</p>
+            <h3 className="font-display text-2xl font-bold">学习进度</h3>
+            <p className="mt-1 text-base text-space-900/60">查看能力雷达图与成就徽章</p>
           </div>
-          <span className="text-3xl transition-transform group-hover:scale-110">🏆</span>
+          <span className="text-4xl transition-transform group-hover:scale-110">🏆</span>
         </Link>
       </section>
     </Layout>

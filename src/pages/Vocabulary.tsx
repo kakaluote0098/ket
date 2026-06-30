@@ -105,12 +105,12 @@ export default function Vocabulary() {
   return (
     <Layout>
       <div className="mb-6 flex items-center gap-3">
-        <Link to="/learn" className="rounded-full bg-white/60 p-2 text-space-900 transition-colors hover:bg-white">
-          <ArrowLeft size={22} />
+        <Link to="/learn" className="rounded-full bg-white/60 p-3 text-space-900 transition-colors hover:bg-white">
+          <ArrowLeft size={24} />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-space-900">单词记忆</h1>
-          <p className="text-sm text-space-900/60">
+          <h1 className="text-3xl font-bold text-space-900">单词记忆</h1>
+          <p className="text-base text-space-900/60">
             {shuffled.length > 0 ? `${index + 1} / ${shuffled.length}` : '0 / 0'}
           </p>
         </div>
@@ -125,31 +125,35 @@ export default function Vocabulary() {
       )}
 
       {!weakMode && (
-        <div className="mb-4 mt-4 flex gap-2 overflow-x-auto pb-2">
-        <button
-          onClick={() => handleCategoryChange('all')}
-          className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${
-            category === 'all'
-              ? 'bg-nebula text-white shadow-glow-sm'
-              : 'bg-white/60 text-space-900 hover:bg-white'
-          }`}
-        >
-          全部
-        </button>
-        {availableCategories.map((key) => (
-          <button
-            key={key}
-            onClick={() => handleCategoryChange(key)}
-            className={`shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition-all ${
-              category === key
-                ? 'bg-mint text-white shadow-glow-sm'
-                : 'bg-white/60 text-space-900 hover:bg-white'
-            }`}
-          >
-            {categoryLabels[key].emoji} {categoryLabels[key].label}
-          </button>
-        ))}
-      </div>
+        <div className="mb-4 mt-5">
+          <p className="mb-3 text-base font-bold text-space-900/70">选择主题</p>
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => handleCategoryChange('all')}
+              className={`min-h-[3rem] rounded-full px-5 py-2.5 text-base font-bold transition-all ${
+                category === 'all'
+                  ? 'bg-nebula text-white shadow-glow-sm'
+                  : 'bg-white/60 text-space-900 hover:bg-white'
+              }`}
+            >
+              全部
+            </button>
+            {availableCategories.map((key) => (
+              <button
+                key={key}
+                onClick={() => handleCategoryChange(key)}
+                className={`min-h-[3rem] rounded-full px-5 py-2.5 text-base font-bold transition-all ${
+                  category === key
+                    ? 'bg-mint text-white shadow-glow-sm'
+                    : 'bg-white/60 text-space-900 hover:bg-white'
+                }`}
+              >
+                <span className="mr-1 text-xl">{categoryLabels[key].emoji}</span>
+                {categoryLabels[key].label}
+              </button>
+            ))}
+          </div>
+        </div>
       )}
 
       {shuffled.length === 0 || !current ? (
@@ -160,7 +164,7 @@ export default function Vocabulary() {
         )
       ) : (
         <>
-          <div className="mb-6 h-3 w-full overflow-hidden rounded-full bg-space-900/5">
+          <div className="mb-6 h-4 w-full overflow-hidden rounded-full bg-space-900/5">
             <div
               className="h-full rounded-full bg-mint transition-all duration-500"
               style={{ width: `${((index + 1) / shuffled.length) * 100}%` }}
