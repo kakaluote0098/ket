@@ -12,7 +12,7 @@ export default function SpeakingCard({ sentence, onComplete }: SpeakingCardProps
   const [score, setScore] = useState<number | null>(null);
   const timerRef = useRef<number | null>(null);
 
-  const handleSpeak = () => speak(sentence, { rate: 0.85 });
+  const handleSpeak = () => speak(sentence, { rate: 0.6375 });
 
   const startRecording = () => {
     setRecording(true);

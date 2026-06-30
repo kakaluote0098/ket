@@ -52,7 +52,7 @@ export function speak(text: string, options: SpeakOptions = {}) {
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = options.lang ?? 'en-US';
-  utterance.rate = options.rate ?? 0.85;
+  utterance.rate = options.rate ?? 0.6375;
   utterance.pitch = 1;
 
   const voice = getAmericanEnglishVoice();

@@ -34,7 +34,7 @@ function ListeningCard({ exercise }: { exercise: PracticeExercise }) {
   return (
     <div className="space-y-4">
       <button
-        onClick={() => speak(exercise.audioText || '', { rate: 0.8 })}
+        onClick={() => speak(exercise.audioText || '', { rate: 0.6 })}
         className="flex h-16 w-full items-center justify-center gap-2 rounded-2xl bg-nebula text-white shadow-glow-sm transition-transform hover:scale-[1.02]"
       >
         <Volume2 size={24} />
