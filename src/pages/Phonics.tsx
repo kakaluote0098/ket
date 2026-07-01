@@ -128,6 +128,34 @@ export default function Phonics() {
                     ))}
                   </div>
 
+                  {lesson.wordFamilies && lesson.wordFamilies.length > 0 && (
+                    <div className="rounded-2xl bg-mint/5 p-4">
+                      <p className="mb-3 flex items-center gap-2 text-base font-bold text-mint/80">
+                        <BookOpen size={18} /> 拼读组合举例
+                      </p>
+                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                        {lesson.wordFamilies.map((family, fIdx) => (
+                          <div key={fIdx} className="rounded-2xl bg-white/60 p-4">
+                            <div className="mb-2 inline-flex items-center gap-2 rounded-full bg-mint/10 px-3 py-1">
+                              <span className="text-lg font-bold text-mint">{family.pattern}</span>
+                            </div>
+                            <div className="flex flex-wrap gap-2">
+                              {family.words.map((word) => (
+                                <span
+                                  key={word}
+                                  className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1.5 text-base font-bold text-space-900 shadow-sm"
+                                >
+                                  {word}
+                                  <SpeakButton text={word} size={14} className="p-1" />
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   <div className="rounded-2xl bg-mint/5 p-4">
                     <p className="mb-2 flex items-center gap-2 text-xs font-semibold text-mint/80">
                       <Volume2 size={14} /> 拼读练习词

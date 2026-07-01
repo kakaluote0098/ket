@@ -7,6 +7,8 @@ export interface PhonicsLesson {
   examples: { text: string; phonetic?: string; tip?: string }[];
   practiceWords: string[];
   tips: string[];
+  /** 按拼读组合分类的举例词，每个组合 5 个 */
+  wordFamilies?: { pattern: string; words: string[] }[];
 }
 
 // 第一阶段 零基础筑基期 · 拼读体系（8 课时）
@@ -103,6 +105,14 @@ export const phase1PhonicsLessons: PhonicsLesson[] = [
       { text: 'b-u-s', phonetic: '/b/ /ʌ/ /s/ → /bʌs/', tip: '短元音 u' },
     ],
     practiceWords: ['rat', 'hen', 'wig', 'mop', 'cup', 'sad', 'red', 'sit'],
+    wordFamilies: [
+      { pattern: '-at', words: ['cat', 'hat', 'fat', 'rat', 'mat'] },
+      { pattern: '-an', words: ['can', 'fan', 'man', 'pan', 'van'] },
+      { pattern: '-en', words: ['pen', 'hen', 'ten', 'men', 'den'] },
+      { pattern: '-ig', words: ['pig', 'big', 'dig', 'wig', 'fig'] },
+      { pattern: '-og', words: ['dog', 'fog', 'log', 'hog', 'jog'] },
+      { pattern: '-ug', words: ['bug', 'hug', 'mug', 'rug', 'tug'] },
+    ],
     tips: [
       '用手指遮住单词，逐个音素拼读。',
       '拼读时由慢到快，最终自然连成词。',
@@ -127,6 +137,14 @@ export const phase1PhonicsLessons: PhonicsLesson[] = [
       { text: '-nd', phonetic: 'hand /hænd/', tip: 'n 和 d 快速连读' },
     ],
     practiceWords: ['black', 'frog', 'stop', 'plant', 'desk', 'truck', 'sleep', 'stand'],
+    wordFamilies: [
+      { pattern: 'bl-', words: ['black', 'blue', 'block', 'blanket', 'blow'] },
+      { pattern: 'cl-', words: ['clean', 'clock', 'cloud', 'climb', 'club'] },
+      { pattern: 'br-', words: ['brown', 'bread', 'break', 'brush', 'bring'] },
+      { pattern: 'cr-', words: ['cry', 'crab', 'cross', 'crown', 'crop'] },
+      { pattern: 'st-', words: ['star', 'stop', 'stamp', 'stand', 'stick'] },
+      { pattern: 'tr-', words: ['tree', 'truck', 'train', 'try', 'trip'] },
+    ],
     tips: [
       '把连缀当作一个整体来练习。',
       '避免在辅音之间加元音，如不要把 blue 读成 /bəˈluː/。',
@@ -152,6 +170,13 @@ export const phase1PhonicsLessons: PhonicsLesson[] = [
       { text: 'ck = /k/', phonetic: 'duck /dʌk/', tip: '与 c 和 k 单独发 /k/ 相同' },
     ],
     practiceWords: ['ship', 'chip', 'thin', 'when', 'duck', 'shop', 'chat', 'that'],
+    wordFamilies: [
+      { pattern: 'sh', words: ['ship', 'shop', 'fish', 'shell', 'sheep'] },
+      { pattern: 'ch', words: ['chair', 'chicken', 'child', 'chip', 'chase'] },
+      { pattern: 'th', words: ['think', 'thank', 'three', 'this', 'that'] },
+      { pattern: 'wh', words: ['what', 'when', 'where', 'why', 'white'] },
+      { pattern: 'ck', words: ['duck', 'back', 'sick', 'sock', 'luck'] },
+    ],
     tips: [
       '把字母组合当作一个“音块”来记忆。',
       'th 的发音要大胆把舌尖伸出来。',
