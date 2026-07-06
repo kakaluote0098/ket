@@ -36,7 +36,7 @@ export default function GrammarFoundation() {
         </Link>
         <div>
           <h1 className="text-2xl font-bold text-space-900">语法句型</h1>
-          <p className="text-sm text-space-900/60">第一阶段 · 4 课时 · 零基础语法全覆盖</p>
+          <p className="text-sm text-space-900/60">第一阶段 · 12 课时 · 零基础语法 + KET 必考语法升级全覆盖</p>
         </div>
       </div>
 
@@ -46,9 +46,9 @@ export default function GrammarFoundation() {
             <Pencil size={24} />
           </div>
           <div>
-            <h2 className="font-display text-lg font-bold text-space-900">零基础语法体系</h2>
+            <h2 className="font-display text-lg font-bold text-space-900">零基础到 KET 必考语法体系</h2>
             <p className="text-sm text-space-900/70">
-              从代词、名词、be 动词到一般现在时与基础介词，系统搭建英语句型基础。
+              从代词、名词、be 动词、一般现在时，升级到现在进行时、一般过去时、比较级、情态动词、并列句与状语从句，系统搭建 KET 句型基础。
             </p>
           </div>
         </div>

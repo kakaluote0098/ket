@@ -19,7 +19,7 @@ const modules = [
   {
     icon: '✏️',
     title: '语法句型',
-    desc: '第一阶段零基础语法全覆盖',
+    desc: '零基础语法 + KET 必考语法升级全覆盖',
     to: '/learn/grammar-foundation',
     color: 'bg-gradient-to-br from-ocean/30 to-ocean/10',
   },
