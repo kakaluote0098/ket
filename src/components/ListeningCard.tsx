@@ -13,7 +13,7 @@ export default function ListeningCard({ question, onAnswer }: ListeningCardProps
   const [selected, setSelected] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
 
-  const play = () => speak(question.audioText, { rate: 0.6375 });
+  const play = () => speak(question.audioText, { rate: 0.32 });
 
   const handleSelect = (index: number) => {
     if (showResult) return;
