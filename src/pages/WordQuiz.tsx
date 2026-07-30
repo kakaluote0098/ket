@@ -24,6 +24,14 @@ const categoryLabels: Record<WordCategory, { label: string; emoji: string }> = {
   sports: { label: '运动', emoji: '⚽' },
   festival: { label: '节日', emoji: '🎉' },
   ket_core: { label: 'KET核心', emoji: '⭐' },
+  body: { label: '身体', emoji: '🦵' },
+  health: { label: '健康', emoji: '💊' },
+  transport: { label: '交通', emoji: '🚌' },
+  shopping: { label: '购物', emoji: '🛒' },
+  places: { label: '地点', emoji: '🏙️' },
+  emotions: { label: '情感', emoji: '😊' },
+  jobs: { label: '职业', emoji: '👩‍⚕️' },
+  technology: { label: '科技', emoji: '💻' },
 };
 
 function shuffleArray<T>(arr: T[]): T[] {

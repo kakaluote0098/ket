@@ -25,7 +25,15 @@ export type WordCategory =
   | 'hobby'
   | 'sports'
   | 'festival'
-  | 'ket_core';
+  | 'ket_core'
+  | 'body'
+  | 'health'
+  | 'transport'
+  | 'shopping'
+  | 'places'
+  | 'emotions'
+  | 'jobs'
+  | 'technology';
 
 export interface Word {
   id: string;
